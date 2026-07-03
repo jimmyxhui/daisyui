@@ -169,7 +169,7 @@
           ></path>
         </g>
       </svg>
-      <span class="grow text-left">Search…</span>
+      <span class="grow text-left">{$t("Search…")}</span>
       <kbd class="kbd kbd-sm font-mono opacity-50"><span class="me-1 text-sm">⌘</span>K</kbd>
     </button>
   </div>

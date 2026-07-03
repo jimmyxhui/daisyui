@@ -439,9 +439,9 @@
                     {/if}
                   </td>
                   <td class="w-8/12 min-w-[20rem]">
-                    {item.desc}
+                    {@html $t(item.desc)}
                     {#if item.default}
-                      <span class="text-base-content/30 text-xs">[Default]</span>
+                      <span class="text-base-content/30 text-xs">[{@html $t("Default")}]</span>
                     {/if}
                   </td>
                 </tr>

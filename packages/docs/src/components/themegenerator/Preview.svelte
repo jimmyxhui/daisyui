@@ -1,5 +1,6 @@
 <script>
   import Carbon from "$components/Carbon.svelte"
+  import { t } from "$lib/i18n.svelte.js"
   const componentGrid = {
     button: {
       element: "button",
@@ -658,12 +659,11 @@
                 <div style="height: 90%"></div>
               </div>
               <p class="py-3 text-xs">
-                Sales volume reached $12,450 this week, showing a 15% increase from the previous
-                period.
+                {$t("Sales volume reached $12,450 this week, showing a 15% increase from the previous period.")}
               </p>
               <div class="grid grid-cols-2 gap-2">
-                <button class="btn">Charts</button>
-                <button class="btn btn-neutral">Details</button>
+                <button class="btn">{$t("Charts")}</button>
+                <button class="btn btn-neutral">{$t("Details")}</button>
               </div>
             </div>
           </div>

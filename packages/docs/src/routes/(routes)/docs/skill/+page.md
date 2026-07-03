@@ -57,4 +57,4 @@ Make a login form. use daisyUI skill
 We recommend using an [MCP server](/docs/mcp/) for daisyUI.  
 MCP servers are more efficient and faster than skills, they provide context on demand, instead of a static skill file. An MCP server will save you LLM tokens and will generate the code faster.
 
-<a href="/docs/mcp/" class="btn">See daisyUI MCP setup guides</a>
+<a href="/docs/mcp/" class="btn"><Translate text="See daisyUI MCP setup guides" /></a>

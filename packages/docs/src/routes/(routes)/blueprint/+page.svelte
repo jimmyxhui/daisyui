@@ -4,6 +4,7 @@
   import StoreFooter from "$components/StoreFooter.svelte"
   import Countdown from "svelte-countdown"
   import { fade } from "svelte/transition"
+  import { t } from "$lib/i18n.svelte.js"
 
   let dialogs = $state({})
 
@@ -206,9 +207,9 @@
 </script>
 
 <SEO
-  title="daisyUI and Tailwind CSS MCP server"
+  title="daisyUI and Tailwind CSS {$t("MCP server")}"
   formatTitle={false}
-  desc="daisyUI and Tailwind CSS MCP server to generate Tailwind CSS code, Convert Figma to Tailwind CSS"
+  desc="daisyUI and Tailwind CSS {$t("MCP server")} to generate Tailwind CSS code, Convert Figma to Tailwind CSS"
   img="https://img.daisyui.com/images/blueprint.webp"
 />
 
@@ -242,7 +243,7 @@
             />
           </svg>
 
-          {discount.data.attributes.amount}% Discount code
+          {discount.data.attributes.amount}% {$t("Discount code")}
 
           {#if discount.data.attributes.expires_at}
             <Countdown
@@ -269,7 +270,7 @@
                           </span>
                           <span
                             class="text-neutral-content/40 block text-[0.5rem] tracking-wide uppercase"
-                            >day</span
+                            >{$t("day")}</span
                           >
                         </div>
                       {/if}
@@ -279,7 +280,7 @@
                         </span>
                         <span
                           class="text-neutral-content/40 block text-[0.5rem] tracking-wide uppercase"
-                          >hour</span
+                          >{$t("hour")}</span
                         >
                       </div>
                       <div class="rounded-field px-2 py-1">
@@ -288,7 +289,7 @@
                         </span>
                         <span
                           class="text-neutral-content/40 block text-[0.5rem] tracking-wide uppercase"
-                          >min</span
+                          >{$t("min")}</span
                         >
                       </div>
                       <div class="rounded-field px-2 py-1">
@@ -297,7 +298,7 @@
                         </span>
                         <span
                           class="text-neutral-content/40 block text-[0.5rem] tracking-wide uppercase"
-                          >sec</span
+                          >{$t("sec")}</span
                         >
                       </div>
                     </date>
@@ -326,15 +327,17 @@
               />
             </svg>
           </div>
-          <h2 class="font-title mb-4 text-center text-2xl font-bold">Limited time discount code</h2>
+          <h2 class="font-title mb-4 text-center text-2xl font-bold">
+            {$t("Limited time discount code")}
+          </h2>
           <div
             class="flex w-full flex-col items-center justify-between gap-10"
             transition:fade={{ duration: 400 }}
           >
             <div class="flex flex-col gap-1">
               <div class="text-center text-sm [text-wrap:balance]">
-                Use <span
-                  data-tip={isClipboardButtonPressed ? "copied" : "copy"}
+                {$t("Use")} <span
+                  data-tip={isClipboardButtonPressed ? $t("copied") : $t("copy")}
                   class="tooltip tooltip-error"
                 >
                   <button
@@ -344,7 +347,7 @@
                     {discount.data.attributes.code}
                   </button>
                 </span>
-                code at checkout to get {discount.data.attributes.amount}% discount.
+                {$t("code at checkout to get")} {discount.data.attributes.amount}% {$t("discount.")}
               </div>
             </div>
 
@@ -360,7 +363,7 @@
                   {#if remaining.done === false}
                     <div
                       class="tooltip shrink-0 after:hidden"
-                      data-tip="Remaining time"
+                      data-tip={$t("Remaining time")}
                       transition:fade={{ duration: 400 }}
                     >
                       <date
@@ -375,7 +378,7 @@
                             <span class="countdown block text-3xl font-normal">
                               <span style={`--value:${remaining.days};`}></span>
                             </span>
-                            <span class="block text-xs tracking-wide uppercase opacity-40">day</span
+                            <span class="block text-xs tracking-wide uppercase opacity-40">{$t("day")}</span
                             >
                           </div>
                         {/if}
@@ -383,19 +386,19 @@
                           <span class="countdown block text-3xl font-normal">
                             <span style={`--value:${remaining.hours};`}></span>
                           </span>
-                          <span class="block text-xs tracking-wide uppercase opacity-40">hour</span>
+                          <span class="block text-xs tracking-wide uppercase opacity-40">{$t("hour")}</span>
                         </div>
                         <div class="bg-base-200 rounded-field border-base-content/5 border p-2">
                           <span class="countdown block text-3xl font-normal">
                             <span style={`--value:${remaining.minutes};`}></span>
                           </span>
-                          <span class="block text-xs tracking-wide uppercase opacity-40">min</span>
+                          <span class="block text-xs tracking-wide uppercase opacity-40">{$t("min")}</span>
                         </div>
                         <div class="bg-base-200 rounded-field border-base-content/5 border p-2">
                           <span class="countdown block text-3xl font-normal">
                             <span style={`--value:${remaining.seconds};`}></span>
                           </span>
-                          <span class="block text-xs tracking-wide uppercase opacity-40">sec</span>
+                          <span class="block text-xs tracking-wide uppercase opacity-40">{$t("sec")}</span>
                         </div>
                       </date>
                     </div>
@@ -406,7 +409,7 @@
           </div>
         </div>
         <form method="dialog" class="modal-backdrop">
-          <button>close</button>
+          <button>{$t("close")}</button>
         </form>
       </dialog>
     {/if}
@@ -417,7 +420,7 @@
   <div>
     <div class="inline-block">
       <div class="me-6 -mb-2 self-end text-end font-mono text-[0.625rem] text-blue-600">
-        Version 1.4
+        {$t("Version 1.4")}
       </div>
       <div class="mb-4 inline-grid grid-cols-[1rem_1fr_1rem] grid-rows-[1rem_1fr_1rem]">
         <div class="border-s-2 border-t-2 border-blue-600 [grid-area:1/1/2/2]"></div>
@@ -483,8 +486,8 @@
         />
       </svg>
       <div>
-        Official daisyUI Code Generator
-        <span class="tooltip" data-tip="Model Context Protocol"> MCP </span> Server
+        {$t("Official daisyUI Code Generator")}
+        <span class="tooltip" data-tip="Model Context Protocol"> MCP </span> {$t("Server")}
       </div>
     </div>
     <div class="ms-2 py-1.5 max-sm:text-xs">
@@ -498,7 +501,7 @@
           d="M248 850c-22.667 0 -41.333 -9.333 -56 -28c0 0 -180 -236 -180 -236c-10.667 -16 -14.667 -33.333 -12 -52c2.667 -18.667 11.333 -34 26 -46c14.667 -12 31.667 -16.667 51 -14c19.333 2.667 35 12 47 28c0 0 118 154 118 154c0 0 296 -474 296 -474c10.667 -16 25 -26 43 -30c18 -4 35.667 -1.333 53 8c16 10.667 26 25 30 43c4 18 1.333 35.667 -8 53c0 0 -350 560 -350 560c-13.333 21.333 -32 32 -56 32c0 0 -2 2 -2 2"
         ></path>
       </svg>
-      Provides on-demand, fine-tuned daisyUI design system resources to AI
+      {$t("Provides on-demand, fine-tuned daisyUI design system resources to AI")}
     </div>
     <div class="ms-2 py-1.5 max-sm:text-xs">
       <svg
@@ -511,7 +514,7 @@
           d="M248 850c-22.667 0 -41.333 -9.333 -56 -28c0 0 -180 -236 -180 -236c-10.667 -16 -14.667 -33.333 -12 -52c2.667 -18.667 11.333 -34 26 -46c14.667 -12 31.667 -16.667 51 -14c19.333 2.667 35 12 47 28c0 0 118 154 118 154c0 0 296 -474 296 -474c10.667 -16 25 -26 43 -30c18 -4 35.667 -1.333 53 8c16 10.667 26 25 30 43c4 18 1.333 35.667 -8 53c0 0 -350 560 -350 560c-13.333 21.333 -32 32 -56 32c0 0 -2 2 -2 2"
         ></path>
       </svg>
-      daisyUI code generation with
+      {$t("daisyUI code generation with")}
       <span
         class="inline-block -rotate-1 bg-green-100 px-2 py-0.25 font-semibold text-black shadow-[2px_2px_var(--color-green-200)]"
       >
@@ -531,7 +534,7 @@
             <path d="M16 7L22 7 22 13"></path>
           </g>
         </svg>
-        10x code quality
+        {$t("10x code quality")}
       </span>
       +
       <span
@@ -553,13 +556,13 @@
             <path d="M16 7L22 7 22 13"></path>
           </g>
         </svg>
-        10x faster result
+        {$t("10x faster result")}
       </span>
-      and
+      {$t("and")}
       <span
         class="inline-block -rotate-1 bg-green-100 px-2 py-0.25 font-semibold text-black shadow-[2px_2px_var(--color-green-200)]"
       >
-        90% less token cost
+        {$t("90% less token cost")}
       </span>
     </div>
     <div class="ms-2 py-1.5 max-sm:text-xs">
@@ -573,7 +576,7 @@
           d="M248 850c-22.667 0 -41.333 -9.333 -56 -28c0 0 -180 -236 -180 -236c-10.667 -16 -14.667 -33.333 -12 -52c2.667 -18.667 11.333 -34 26 -46c14.667 -12 31.667 -16.667 51 -14c19.333 2.667 35 12 47 28c0 0 118 154 118 154c0 0 296 -474 296 -474c10.667 -16 25 -26 43 -30c18 -4 35.667 -1.333 53 8c16 10.667 26 25 30 43c4 18 1.333 35.667 -8 53c0 0 -350 560 -350 560c-13.333 21.333 -32 32 -56 32c0 0 -2 2 -2 2"
         ></path>
       </svg>
-      Generate unlimited and accurate daisyUI code, with any code editor, any LLM
+      {$t("Generate unlimited and accurate daisyUI code, with any code editor, any LLM")}
     </div>
     <div class="ms-2 py-1.5 max-sm:text-xs">
       <svg
@@ -586,7 +589,7 @@
           d="M248 850c-22.667 0 -41.333 -9.333 -56 -28c0 0 -180 -236 -180 -236c-10.667 -16 -14.667 -33.333 -12 -52c2.667 -18.667 11.333 -34 26 -46c14.667 -12 31.667 -16.667 51 -14c19.333 2.667 35 12 47 28c0 0 118 154 118 154c0 0 296 -474 296 -474c10.667 -16 25 -26 43 -30c18 -4 35.667 -1.333 53 8c16 10.667 26 25 30 43c4 18 1.333 35.667 -8 53c0 0 -350 560 -350 560c-13.333 21.333 -32 32 -56 32c0 0 -2 2 -2 2"
         ></path>
       </svg>
-      Convert
+      {$t("Convert")}
       <span class="badge badge-soft">Image</span>
       <span class="opacity-20">|</span>
       <span class="badge badge-soft">Figma</span>
@@ -594,7 +597,7 @@
       <span class="badge badge-soft">Tailwind CSS</span>
       <span class="opacity-20">|</span>
       <span class="badge badge-soft">Bootstrap</span>
-      to daisyUI
+      {$t("to daisyUI")}
     </div>
   </div>
 
@@ -620,7 +623,7 @@
             stroke-width="4"
           ></path></svg
         >
-        Install guide
+        {$t("Install guide")}
       </a>
       <a
         class="btn btn-neutral btn-lg btn-wide"
@@ -642,16 +645,16 @@
             <circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle>
           </g>
         </svg>
-        Get the license
+        {$t("Get the license")}
       </a>
     </div>
 
     <div class="flex items-center gap-2 ps-6 pt-2 pb-4">
-      <div class="text-[0.625rem] opacity-40">Compatible with</div>
+      <div class="text-[0.625rem] opacity-40">{$t("Compatible with")}</div>
       <img class="size-4" src="https://img.daisyui.com/images/logos/cursor.webp?2" alt="Cursor" />
       <img class="size-4" src="https://img.daisyui.com/images/logos/vscode.webp" alt="VS Code" />
       <img class="size-4" src="https://img.daisyui.com/images/logos/claude.webp" alt="Claude" />
-      <div class="text-[0.625rem] opacity-40">and more</div>
+      <div class="text-[0.625rem] opacity-40">{$t("and more")}</div>
     </div>
   </div>
 
@@ -662,7 +665,7 @@
       class="mockup-code my-20 min-w-280 bg-black py-2 text-white outline outline-offset-1 outline-white/5 before:-ms-2.5 max-xl:absolute max-xl:end-10 max-md:-me-10"
     >
       <div class="-mt-9 flex items-center justify-center border-b border-white/10 pt-2 pb-1">
-        <div class="font-mono text-xs opacity-30">Your text editor</div>
+          <div class="font-mono text-xs opacity-30">{$t("Your text editor")}</div>
       </div>
       <div class="flex">
         <div
@@ -670,11 +673,11 @@
         >
           <div class="text-center font-[Fuzzy_Bubbles] uppercase">
             <div class="text-center text-3xl lg:text-5xl">
-              Design System
+              {$t("Design System")}
               <br />
-              Resources
+              {$t("Resources")}
             </div>
-            <div class="mt-2 text-3xl text-white">(on-demand)</div>
+            <div class="mt-2 text-3xl text-white">{$t("(on-demand)")}</div>
           </div>
           <svg
             class="relative -me-65 max-lg:hidden"
@@ -719,11 +722,10 @@
             </svg>
           </div>
           <div class="rounded-box border border-white/5 bg-white/5 p-4">
-            Create a daisyUI login form with form validator, a remember me checkbox and a forgot
-            password link
+            {$t("Create a daisyUI login form with form validator, a remember me checkbox and a forgot password link")}
           </div>
-          <div class="opacity-30">Thought for 1s</div>
-          <div>Fetching required daisyUI code snippets</div>
+          <div class="opacity-30">{$t("Thought for 1s")}</div>
+          <div>{$t("Fetching required daisyUI code snippets")}</div>
           <div class="-m-2 grid grid-cols-[1rem_1fr_1rem] grid-rows-[1rem_1fr_1rem]">
             <div class="border-s-2 border-t-2 border-blue-600 [grid-area:1/1/2/2]"></div>
             <div class="border-e-2 border-t-2 border-blue-600 [grid-area:1/3/2/4]"></div>
@@ -750,7 +752,7 @@
                       ></path>
                     </g>
                   </svg>
-                  <span class="opacity-50">Ran</span>
+                  <span class="opacity-50">{$t("Ran")}</span>
                   <span
                     class="badge badge-xs gap-1 border-blue-400/10 bg-blue-400/10 text-blue-500"
                   >
@@ -765,7 +767,7 @@
                     </svg>
                     daisyUI Blueprint
                   </span>
-                  <span class="opacity-50">MCP tool</span>
+                  <span class="opacity-50">{$t("MCP tool")}</span>
                 </div>
                 <svg
                   class="inline-block size-3"
@@ -782,7 +784,7 @@
                   ></path>
                 </svg>
               </div>
-              <div>Received required components from MCP:</div>
+              <div>{$t("Received required components from MCP:")}</div>
               <div>card, input, button, link, checkbox, validator</div>
               <div class="flex- my-2 columns-2 items-start gap-2">
                 <div class="mb-2 rounded-lg bg-white/10 p-2 outline outline-black">
@@ -826,7 +828,7 @@
                     ></path>
                   </g>
                 </svg>
-                Reading specs, docs and examples.
+                {$t("Reading specs, docs and examples.")}
               </div>
               <div>
                 <svg
@@ -844,13 +846,12 @@
                     ></path>
                   </g>
                 </svg>
-                Done.
+                {$t("Done.")}
               </div>
             </div>
           </div>
           <div>
-            Creating login form with daisyUI components with a remember me checkbox and a forgot
-            password link
+            {$t("Creating login form with daisyUI components with a remember me checkbox and a forgot password link")}
           </div>
           <div>
             <span class="badge badge-xs gap-1 border-white/10 bg-white/10 text-white">
@@ -891,8 +892,7 @@
                 ></path>
               </g>
             </svg>
-            Login form made with daisyUI components has been added to index.html using daisyUI Blueprint
-            MCP server.
+            {$t("Login form made with daisyUI components has been added to index.html using daisyUI Blueprint MCP server.")}
           </div>
           <!-- AI input -->
           <div class="rounded-box border border-white/5 bg-white/5 p-2">
@@ -921,13 +921,13 @@
                 index.html
               </div>
             </div>
-            <div class="py-2 opacity-50">Ask AI...</div>
+            <div class="py-2 opacity-50">{$t("Ask AI...")}</div>
             <div class="flex justify-between">
               <div class="flex gap-2 leading-none">
                 <div
                   class="rounded-field inline-block border border-white/5 px-1 py-0.5 text-[0.625rem]"
                 >
-                  Agent
+                  {$t("Agent")}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -977,42 +977,41 @@
   >
     <div class="grow">
       <div class="prose pt-10 lg:min-h-[60vh]">
-        <span class="badge badge-soft mb-4">Problem</span>
+        <span class="badge badge-soft mb-4">{$t("Problem")}</span>
         <h2
           id="problem"
           class="text-error font-title mt-0 mb-8 text-[clamp(2.5rem,8vw,3rem)] leading-none"
         >
-          Why AI sucks at UI?
+          {$t("Why AI sucks at UI?")}
         </h2>
         <div>
           <p>
-            If you open an LLM and simply ask for UI code, you're probably going to get broken,
-            outdated or mediocre results. But why is that?
+            {$t("If you open an LLM and simply ask for UI code, you're probably going to get broken, outdated or mediocre results. But why is that?")}
           </p>
-          <p>To generate a good looking UI, LLM needs:</p>
+          <p>{$t("To generate a good looking UI, LLM needs:")}</p>
           <ol>
-            <li>Docs and tutorials</li>
-            <li>Design system resources</li>
-            <li>List of all available components and their specs</li>
-            <li>Code examples and syntax</li>
-            <li>Design tokens, colors, states, variants and variables</li>
-            <li>Modification guide and best practices</li>
+            <li>{$t("Docs and tutorials")}</li>
+            <li>{$t("Design system resources")}</li>
+            <li>{$t("List of all available components and their specs")}</li>
+            <li>{$t("Code examples and syntax")}</li>
+            <li>{$t("Design tokens, colors, states, variants and variables")}</li>
+            <li>{$t("Modification guide and best practices")}</li>
           </ol>
           <div class="chat chat-end text-sm">
             <div class="chat-bubble">
-              I see, let's put them all in a 600KB .md file and give it to LLM.
+              {$t("I see, let's put them all in a 600KB .md file and give it to LLM.")}
             </div>
           </div>
           <div class="chat chat-end text-sm">
-            <div class="chat-bubble">That should work!</div>
+            <div class="chat-bubble">{$t("That should work!")}</div>
           </div>
           <div class="chat chat-start text-sm">
-            <div class="chat-bubble">Well... no.</div>
+            <div class="chat-bubble">{$t("Well... no.")}</div>
           </div>
           <div class="chat chat-start text-sm">
             <div class="chat-bubble">
-              Providing too much context won't work either.
-              <br />LLM will ignore most of it, hallucinates the rest and lies to you about it.
+              {$t("Providing too much context won't work either.")}
+              <br />{$t("LLM will ignore most of it, hallucinates the rest and lies to you about it.")}
             </div>
           </div>
         </div>
@@ -1037,23 +1036,21 @@
         </svg>
       </div>
       <div class="rounded-box border border-white/5 bg-white/5 p-4">
-        Create a daisyUI login form with form validator, a remember me checkbox and a forgot
-        password link
+        {$t("Create a daisyUI login form with form validator, a remember me checkbox and a forgot password link")}
       </div>
-      <div class="opacity-30">Thought for 5s</div>
+      <div class="opacity-30">{$t("Thought for 5s")}</div>
       <div>
-        Let me <span class="text-error italic">guess</span> how a daisyUI login form looks like...
-      </div>
-      <div>
-        Based on my 2023 coding knowledge, let me <span class="text-error italic">guess</span> the syntax...
+        {$t("Let me")} <span class="text-error italic">{$t("guess")}</span> {$t("how a daisyUI login form looks like...")}
       </div>
       <div>
-        <span class="text-error italic">I'm not sure</span> what's the correct way to put it together.
-        Let me search the web...
+        {$t("Based on my 2023 coding knowledge, let me")} <span class="text-error italic">{$t("guess")}</span> {$t("the syntax...")}
       </div>
       <div>
-        I found 20 random pages that I'm not going to read anyway. But who cares... Here's a
-        mediocre AI slop for you.
+        <span class="text-error italic">{$t("I'm not sure")}</span> {$t("what's the correct way to put it together.")}
+        {$t("Let me search the web...")}
+      </div>
+      <div>
+        {$t("I found 20 random pages that I'm not going to read anyway. But who cares... Here's a mediocre AI slop for you.")}
       </div>
       <div>
         <span class="badge badge-xs gap-1 border-white/10 bg-white/10 text-white">
@@ -1078,7 +1075,7 @@
           <span class="text-red-400">-29</span>
         </span>
       </div>
-      <div>Do you want me to add more purple gradients? I love purple.</div>
+      <div>{$t("Do you want me to add more purple gradients? I love purple.")}</div>
       <!-- AI input -->
       <div class="rounded-box border border-white/5 bg-white/5 p-2">
         <div class="flex gap-2 leading-none">
@@ -1102,13 +1099,13 @@
             index.html
           </div>
         </div>
-        <div class="py-2 opacity-50">Ask AI...</div>
+        <div class="py-2 opacity-50">{$t("Ask AI...")}</div>
         <div class="flex justify-between">
           <div class="flex gap-2 leading-none">
             <div
               class="rounded-field inline-block border border-white/5 px-1 py-0.5 text-[0.625rem]"
             >
-              Agent
+              {$t("Agent")}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -1129,7 +1126,7 @@
                 >
                 </path>
               </svg>
-              No MCP
+              {$t("No MCP")}
             </span>
           </div>
           <div class="rounded-field inline-block border border-white/5 px-1 py-0.5">
@@ -1187,46 +1184,39 @@
   <div class="relative flex items-start gap-12 max-lg:flex-col lg:gap-24">
     <div class="grow max-lg:mb-20">
       <div class="prose lg:min-h-[80vh]">
-        <span class="badge badge-soft mb-4">Solution</span>
+        <span class="badge badge-soft mb-4">{$t("Solution")}</span>
         <h2 id="solution" class="font-title mt-0 mb-8 text-[clamp(2.5rem,8vw,3rem)] leading-none">
-          Providing <span class="text-blue-500">context</span> to LLM
-          <div class="font-semibold">right time, right place</div>
+          {$t("Providing")} <span class="text-blue-500">{$t("context")}</span> {$t("to LLM")}
+          <div class="font-semibold">{$t("right time, right place")}</div>
         </h2>
         <div>
           <p>
-            MCP (Model Context Protocol) is an API protocol for AI to get accurate, reliable context
-            information on demand, instead of guessing or searching through irrelevant data
-            everytime.
+            {$t("MCP (Model Context Protocol) is an API protocol for AI to get accurate, reliable context information on demand, instead of guessing or searching through irrelevant data everytime.")}
           </p>
           <p>
-            The official daisyUI Blueprint MCP server provide <span class="font-semibold"
-              >real-time context</span
-            > to the LLM, using MCP tools, MCP prompts and MCP resources.
+            {$t("The official daisyUI Blueprint MCP server provide")} <span class="font-semibold">{$t("real-time context")}</span> {$t("to the LLM, using MCP tools, MCP prompts and MCP resources.")}
           </p>
-          <p>No more guessworks, no hallucinations, no outdated syntax.</p>
+          <p>{$t("No more guessworks, no hallucinations, no outdated syntax.")}</p>
           <p>
-            It
+            {$t("It")}
             <span
               class="inline-block -rotate-1 bg-green-100 px-2 py-0.25 font-semibold text-black shadow-[2px_2px_var(--color-green-200)]"
             >
-              increases code quality
-            </span>, because LLM gains access to the correct context right away instead of reading a
-            big llms.txt file or searching the web for random pages, or guessing the results based
-            on outdated info.
+              {$t("increases code quality")}
+            </span>, {$t("because LLM gains access to the correct context right away instead of reading a big llms.txt file or searching the web for random pages, or guessing the results based on outdated info.")}
           </p>
           <p>
-            Providing the right context at the right time means fast, efficient, and accurate
-            results. The LLM receives exactly what it needs, which means
+            {$t("Providing the right context at the right time means fast, efficient, and accurate results. The LLM receives exactly what it needs, which means")}
             <span
               class="inline-block rotate-1 bg-green-100 px-2 py-0.25 font-semibold text-black shadow-[2px_2px_var(--color-green-200)]"
             >
-              faster code generation
+              {$t("faster code generation")}
             </span>
-            and
+            {$t("and")}
             <span
               class="inline-block -rotate-1 bg-green-100 px-2 py-0.25 font-semibold text-black shadow-[2px_2px_var(--color-green-200)]"
             >
-              less token usage.
+              {$t("less token usage.")}
             </span>
           </p>
         </div>
@@ -1251,9 +1241,9 @@
         </svg>
       </div>
       <div class="rounded-box border border-white/5 bg-white/5 p-4">
-        Create a daisyUI form for profile settings with form validator and a save button
+        {$t("Create a daisyUI form for profile settings with form validator and a save button")}
       </div>
-      <div class="opacity-30">Thought for 1s</div>
+      <div class="opacity-30">{$t("Thought for 1s")}</div>
       <div>
         <svg class="inline-block size-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <g
@@ -1273,7 +1263,7 @@
             <path class="opacity-30" d="M7.75 7.75l-2.15 -2.15"></path>
           </g>
         </svg>
-        Fetching daisyUI code snippets and design system resources...
+        {$t("Fetching daisyUI code snippets and design system resources...")}
       </div>
     </div>
   </div>
@@ -1295,7 +1285,7 @@
     <div class="grow">
       <div class="prose lg:min-h-[60vh]">
         <div class="font-title text-base-content/50 mb-4 text-2xl">
-          Introducing
+          {$t("Introducing")}
           <div
             class="inline-grid grid-cols-[.5rem_1fr_.5rem] grid-rows-[.5rem_1fr_.5rem] align-middle"
           >
@@ -1309,21 +1299,21 @@
               BLUEPRINT
             </div>
           </div>
-          MCP server
+          {$t("MCP server")}
         </div>
         <h2
           id="design-system-provider"
           class="font-title mt-0 mb-8 text-xl leading-none font-semibold lg:text-5xl"
         >
-          Design System
+          {$t("Design System")}
           <br />
-          Resource Provider
+          {$t("Resource Provider")}
           <br />
-          for daisyUI
+          {$t("for daisyUI")}
         </h2>
         <div>
           <p>
-            Blueprint MCP server provides <span
+            Blueprint {$t("MCP server")} provides <span
               class="inline-block -rotate-1 bg-green-100 px-2 py-0.25 font-semibold text-black shadow-[2px_2px_var(--color-green-200)]"
             >
               curated resources
@@ -1345,7 +1335,7 @@
                   ></path></g
                 ></svg
               >
-              daisyUI code snippets
+              {$t("daisyUI code snippets")}
             </li>
             <li>
               <svg
@@ -1362,7 +1352,7 @@
                   ></path></g
                 ></svg
               >
-              Pictures of daisyUI components
+              {$t("Pictures of daisyUI components")}
             </li>
             <li>
               <svg
@@ -1379,7 +1369,7 @@
                   ></path></g
                 ></svg
               >
-              Docs, specs, class names, variants, variables
+              {$t("Docs, specs, class names, variants, variables")}
             </li>
             <li>
               <svg
@@ -1396,7 +1386,7 @@
                   ></path></g
                 ></svg
               >
-              Layout examples
+              {$t("Layout examples")}
             </li>
             <li>
               <svg
@@ -1413,12 +1403,11 @@
                   ></path></g
                 ></svg
               >
-              Best practices
+              {$t("Best practices")}
             </li>
           </ul>
           <p>
-            This will guarantee an accurate and efficient result, without guessworks or
-            hallucinations.
+            {$t("This will guarantee an accurate and efficient result, without guessworks or hallucinations.")}
           </p>
         </div>
       </div>
@@ -1441,7 +1430,7 @@
             ></path></g
           ></svg
         >
-        Using <span class="text-blue-500">daisyUI Blueprint</span> MCP
+        {$t("Using")} <span class="text-blue-500">daisyUI Blueprint</span> MCP
       </div>
       <div class="-m-2 grid grid-cols-[1rem_1fr_1rem] grid-rows-[1rem_1fr_1rem]">
         <div class="border-s-2 border-t-2 border-blue-600 [grid-area:1/1/2/2]"></div>
@@ -1469,7 +1458,7 @@
                   ></path>
                 </g>
               </svg>
-              <span class="opacity-50">Ran</span>
+              <span class="opacity-50">{$t("Ran")}</span>
               <span class="badge badge-xs gap-1 border-blue-400/10 bg-blue-400/10 text-blue-500">
                 <svg
                   class="size-3 fill-current opacity-50"
@@ -1482,7 +1471,7 @@
                 </svg>
                 daisyUI Blueprint
               </span>
-              <span class="opacity-50">MCP tool</span>
+              <span class="opacity-50">{$t("MCP tool")}</span>
             </div>
             <svg class="inline-block size-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
               <path
@@ -1495,7 +1484,7 @@
               ></path>
             </svg>
           </div>
-          <div>Received required components from MCP:</div>
+          <div>{$t("Received required components from MCP:")}</div>
           <div>
             checkbox, toggle, radio, button, input, select, label, fieldset, validator, accordion
           </div>
@@ -1559,7 +1548,7 @@
                 ></path>
               </g>
             </svg>
-            Reading specs, docs and examples.
+            {$t("Reading specs, docs and examples.")}
           </div>
           <div>
             <svg
@@ -1577,11 +1566,11 @@
                 ></path>
               </g>
             </svg>
-            Done.
+            {$t("Done.")}
           </div>
         </div>
       </div>
-      <div>Creating a daisyUI form for profile settings using the provided resources...</div>
+      <div>{$t("Creating a daisyUI form for profile settings using the provided resources...")}</div>
       <div>
         <span class="badge badge-xs gap-1 border-white/10 bg-white/10 text-white">
           <svg
@@ -1622,7 +1611,7 @@
           </g>
         </svg>
         Profile settings form made with daisyUI components has been added to index.html using daisyUI
-        Blueprint MCP server.
+        Blueprint {$t("MCP server")}.
       </div>
       <!-- AI input -->
       <div class="rounded-box border border-white/5 bg-white/5 p-2">
@@ -1647,13 +1636,13 @@
             index.html
           </div>
         </div>
-        <div class="py-2 opacity-50">Ask AI...</div>
+        <div class="py-2 opacity-50">{$t("Ask AI...")}</div>
         <div class="flex justify-between">
           <div class="flex gap-2 leading-none">
             <div
               class="rounded-field inline-block border border-white/5 px-1 py-0.5 text-[0.625rem]"
             >
-              Agent
+              {$t("Agent")}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -1710,7 +1699,7 @@
           BLUEPRINT
         </div>
       </div>
-      : The essential MCP server
+      : The essential {$t("MCP server")}
       <br />
       for higher code quality, faster LLM results, and less token cost
     </div>
@@ -1785,7 +1774,7 @@
               d="M13.78 15.3L19.78 21.3L21.89 19.14L15.89 13.14L13.78 15.3M17.5 10.1C17.11 10.1 16.69 10.05 16.36 9.91L4.97 21.25L2.86 19.14L10.27 11.74L8.5 9.96L7.78 10.66L6.33 9.25V12.11L5.63 12.81L2.11 9.25L2.81 8.55H5.62L4.22 7.14L7.78 3.58C8.95 2.41 10.83 2.41 12 3.58L9.89 5.74L11.3 7.14L10.59 7.85L12.38 9.63L14.2 7.75C14.06 7.42 14 7 14 6.63C14 4.66 15.56 3.11 17.5 3.11C18.09 3.11 18.61 3.25 19.08 3.53L16.41 6.2L17.91 7.7L20.58 5.03C20.86 5.5 21 6 21 6.63C21 8.55 19.45 10.1 17.5 10.1Z"
             ></path></svg
           >
-          MCP Tool
+          {$t("MCP Tool")}
         </span>
         <h2
           id="feature-1"
@@ -1794,11 +1783,11 @@
           <div class="text-base-content/30 me-2 inline-block tabular-nums lg:me-4 lg:-ml-12">
             1.
           </div>
-          On-demand code Snippets
+          {$t("On-demand code Snippets")}
         </h2>
         <div>
-          <p>Blueprint MCP server provides curated daisyUI code snippets to your LLM</p>
-          <p>Including:</p>
+          <p>{$t("Blueprint MCP server provides curated daisyUI code snippets to your LLM")}</p>
+          <p>{$t("Including:")}</p>
           <ul class="list-none p-0">
             <li>
               <svg
@@ -1815,7 +1804,7 @@
                   ></path></g
                 ></svg
               >
-              Component examples
+              {$t("Component examples")}
             </li>
             <li>
               <svg
@@ -1832,7 +1821,7 @@
                   ></path></g
                 ></svg
               >
-              Page layouts
+              {$t("Page layouts")}
             </li>
             <li>
               <svg
@@ -1849,7 +1838,7 @@
                   ></path></g
                 ></svg
               >
-              UI blocks
+              {$t("UI blocks")}
             </li>
             <li>
               <svg
@@ -1866,7 +1855,7 @@
                   ></path></g
                 ></svg
               >
-              Useful combinations
+              {$t("Useful combinations")}
             </li>
           </ul>
 
@@ -1874,10 +1863,9 @@
             It also <span
               class="inline-block -rotate-1 bg-green-100 px-2 py-0.25 font-semibold text-black shadow-[2px_2px_var(--color-green-200)]"
             >
-              provides actual picture
+              {$t("provides actual picture")}
             </span>
-            of the components to help the LLM better understand the design system, and generate a more
-            accurate code.
+            {$t("of the components to help the LLM better understand the design system, and generate a more accurate code.")}
           </p>
         </div>
       </div>
@@ -1900,7 +1888,7 @@
             ></path></g
           ></svg
         >
-        Using <span class="text-blue-500">daisyUI Blueprint</span> MCP
+        {$t("Using")} <span class="text-blue-500">daisyUI Blueprint</span> MCP
       </div>
       <div class="-m-2 grid grid-cols-[1rem_1fr_1rem] grid-rows-[1rem_1fr_1rem]">
         <div class="border-s-2 border-t-2 border-blue-600 [grid-area:1/1/2/2]"></div>
@@ -1911,7 +1899,7 @@
         <div
           class="m-2 flex flex-col gap-2 border-2 border-blue-500 bg-white/5 p-4 outline-2 outline-offset-2 outline-white/5 [grid-area:1/1/4/4]"
         >
-          <div>Received 4 components from MCP:</div>
+          <div>{$t("Received 4 components from MCP:")}</div>
           <div>
             <span class="badge badge-xs gap-1 border-blue-400/10 bg-blue-400/10 text-blue-500">
               toggle
@@ -1926,7 +1914,7 @@
               drawer
             </span>
           </div>
-          <div>Components preview:</div>
+          <div>{$t("Components preview:")}</div>
           <div class="flex- my-2 columns-2 items-start gap-2">
             <div class="mb-2 rounded-lg bg-white/10 p-2 outline outline-black">
               <img
@@ -1970,7 +1958,7 @@
                 ></path>
               </g>
             </svg>
-            Analyzed code snippets, layouts, UI blocks and usage examples.
+            Analyzed code snippets, layouts, {$t("UI blocks")} and usage examples.
           </div>
         </div>
       </div>
@@ -2015,7 +2003,7 @@
             ></path>
           </g>
         </svg>
-        Page generated successfully with daisyUI code snippets.
+        Page generated successfully with {$t("daisyUI code snippets")}.
       </div>
 
       <!-- AI input -->
@@ -2041,13 +2029,13 @@
             index.html
           </div>
         </div>
-        <div class="py-2 opacity-50">Ask AI...</div>
+        <div class="py-2 opacity-50">{$t("Ask AI...")}</div>
         <div class="flex justify-between">
           <div class="flex gap-2 leading-none">
             <div
               class="rounded-field inline-block border border-white/5 px-1 py-0.5 text-[0.625rem]"
             >
-              Agent
+              {$t("Agent")}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -2093,14 +2081,14 @@
       <iframe
         class="h-full w-full"
         src="https://www.youtube.com/embed/ICmVdS-sJKU?mute=1&autoplay=0&controls=1&rel=0&modestbranding=1&loop=1&playlist=ICmVdS-sJKU"
-        title="Blueprint MCP server"
+        title="Blueprint {$t("MCP server")}"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
       ></iframe>
     </div>
   </div>
 
-  <!-- Design system resources -->
+  <!-- {$t("Design system resources")} -->
 
   <div class="relative mt-20 flex items-start gap-12 max-lg:flex-col lg:flex-row-reverse lg:gap-24">
     <div class="grow">
@@ -2116,7 +2104,7 @@
               d="M428 336h825q75 0 75 75v900q0 25-18 43l-64 64q-8 8-13 5.5t-5-12.5V461q0-10-7.5-17.5T1203 436H503q-25 0-43 18l-64 64q-8 8-5.5 13t12.5 5h700q10 0 17.5 7.5t7.5 17.5v950q0 10-7.5 17.5t-17.5 7.5H253q-10 0-17.5-7.5T228 1511V536q0-25 18-43l139-139q18-18 43-18z"
             ></path>
           </svg>
-          MCP Resource
+          {$t("MCP Resource")}
         </span>
         <h2
           id="feature-2"
@@ -2125,35 +2113,35 @@
           <div class="text-base-content/30 me-2 inline-block tabular-nums lg:me-4 lg:-ml-12">
             2.
           </div>
-          Design system resources
+          {$t("Design system resources")}
         </h2>
         <div>
           <p>
-            Blueprint MCP server provides specific details about each component. Including
+            Blueprint {$t("MCP server")} provides specific details about each component. Including
             <span
               class="inline-block -rotate-1 bg-green-100 px-2 py-0.25 font-semibold text-black shadow-[2px_2px_var(--color-green-200)]"
-              >dimensions</span
+              >{$t("dimensions")}</span
             >
             &nbsp;
             <span
               class="inline-block rotate-1 bg-green-100 px-2 py-0.25 font-semibold text-black shadow-[2px_2px_var(--color-green-200)]"
-              >spacing</span
+              >{$t("spacing")}</span
             >
             &nbsp;
             <span
               class="inline-block -rotate-1 bg-green-100 px-2 py-0.25 font-semibold text-black shadow-[2px_2px_var(--color-green-200)]"
-              >variants</span
+              >{$t("variants")}</span
             >
             &nbsp;
             <span
               class="inline-block rotate-1 bg-green-100 px-2 py-0.25 font-semibold text-black shadow-[2px_2px_var(--color-green-200)]"
-              >variables</span
+              >{$t("variables")}</span
             >
-            and more
+            {$t("and more")}
           </p>
           <p>
             This helps the LLM to better understand the design system and generate a higher quality
-            UI. Knowing the exact size of components, their variants and how they they look like in
+            UI. Knowing the exact size of components, their {$t("variants")} and how they they look like in
             practice, the LLM can make more informed decisions when generating code instead of
             guessing the styles just by looking at the name of the component.
           </p>
@@ -2178,7 +2166,7 @@
             ></path></g
           ></svg
         >
-        Using <span class="text-blue-500">daisyUI Blueprint</span> MCP
+        {$t("Using")} <span class="text-blue-500">daisyUI Blueprint</span> MCP
       </div>
       <div class="-m-2 grid grid-cols-[1rem_1fr_1rem] grid-rows-[1rem_1fr_1rem]">
         <div class="border-s-2 border-t-2 border-blue-600 [grid-area:1/1/2/2]"></div>
@@ -2189,7 +2177,7 @@
         <div
           class="m-2 flex flex-col gap-2 border-2 border-blue-500 bg-white/5 p-4 outline-2 outline-offset-2 outline-white/5 [grid-area:1/1/4/4]"
         >
-          <div>Received checkbox component from daisyUI Blueprint MCP server.</div>
+          <div>Received checkbox component from daisyUI Blueprint {$t("MCP server")}.</div>
 
           <div>
             <svg
@@ -2207,14 +2195,12 @@
                 ></path>
               </g>
             </svg>
-            Reading design system specs for daisyUI checkbox component.
+            {$t("Reading design system specs for daisyUI checkbox component.")}
           </div>
         </div>
       </div>
       <div>
-        According to daisyUI design system specs, the checkbox component is 24px by 24px. That's why
-        the alignment looks off. Let's use checkbox-sm variant instead, so it fits better with the
-        other form elements.
+        {$t("According to daisyUI design system specs, the checkbox component is 24px by 24px. That's why the alignment looks off. Let's use checkbox-sm variant instead, so it fits better with the other form elements.")}
       </div>
       <div>
         <span class="badge badge-xs gap-1 border-white/10 bg-white/10 text-white">
@@ -2256,7 +2242,7 @@
             ></path>
           </g>
         </svg>
-        Checkbox component updated to checkbox-sm variant successfully. Now the design looks perfect.
+        {$t("Checkbox component updated to checkbox-sm variant successfully. Now the design looks perfect.")}
       </div>
 
       <!-- AI input -->
@@ -2282,13 +2268,13 @@
             index.html
           </div>
         </div>
-        <div class="py-2 opacity-50">Ask AI...</div>
+        <div class="py-2 opacity-50">{$t("Ask AI...")}</div>
         <div class="flex justify-between">
           <div class="flex gap-2 leading-none">
             <div
               class="rounded-field inline-block border border-white/5 px-1 py-0.5 text-[0.625rem]"
             >
-              Agent
+              {$t("Agent")}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -2343,9 +2329,9 @@
               d="M13.78 15.3L19.78 21.3L21.89 19.14L15.89 13.14L13.78 15.3M17.5 10.1C17.11 10.1 16.69 10.05 16.36 9.91L4.97 21.25L2.86 19.14L10.27 11.74L8.5 9.96L7.78 10.66L6.33 9.25V12.11L5.63 12.81L2.11 9.25L2.81 8.55H5.62L4.22 7.14L7.78 3.58C8.95 2.41 10.83 2.41 12 3.58L9.89 5.74L11.3 7.14L10.59 7.85L12.38 9.63L14.2 7.75C14.06 7.42 14 7 14 6.63C14 4.66 15.56 3.11 17.5 3.11C18.09 3.11 18.61 3.25 19.08 3.53L16.41 6.2L17.91 7.7L20.58 5.03C20.86 5.5 21 6 21 6.63C21 8.55 19.45 10.1 17.5 10.1Z"
             ></path></svg
           >
-          MCP Tool
+          {$t("MCP Tool")}
         </span>
-        <span class="badge badge-soft mb-4">Experimental</span>
+        <span class="badge badge-soft mb-4">{$t("Experimental")}</span>
         <h2
           id="feature-3"
           class="font-title mt-0 mb-8 text-xl leading-none font-semibold lg:text-3xl"
@@ -2353,33 +2339,30 @@
           <div class="text-base-content/30 me-2 inline-block tabular-nums lg:me-4 lg:-ml-12">
             3.
           </div>
-          Convert Figma ➞ daisyUI
+          {$t("Convert Figma ➞ daisyUI")}
         </h2>
         <div>
-          <p>Blueprint MCP server can generate a daisyUI code based on a figma design.</p>
+          <p>Blueprint {$t("MCP server")} can generate a daisyUI code based on a figma design.</p>
           <p>
             This is done by processing the properties of the design elements, their styles, and
             layout from
             <span
               class="inline-block -rotate-1 bg-green-100 px-2 py-0.25 font-semibold text-black shadow-[2px_2px_var(--color-green-200)]"
             >
-              Figma API to LLM
+              {$t("Figma API to LLM")}
             </span> along with daisyUI component details so LLM can map the design to the closest daisyUI
             components.
           </p>
           <p>
-            <span class="font-semibold">This works with any UI made with Figma</span>, whether if
-            you used the official daisyUI Figma library or not. AI will understand the context of
-            the elements and generate the closest possible daisyUI code.
+            <span class="font-semibold">{$t("This works with any UI made with Figma")}</span>, {$t("whether if you used the official daisyUI Figma library or not. AI will understand the context of the elements and generate the closest possible daisyUI code.")}
           </p>
           <p>
-            For example if have a login form in Figma made with Material design, AI will still be
-            able to generate the equivalent daisyUI code for it!
+            {$t("For example if have a login form in Figma made with Material design, AI will still be able to generate the equivalent daisyUI code for it!")}
           </p>
           <p class="alert alert-soft alert-info">
-            The accuracy of the generated code depends on the complexity of the design.
+            {$t("The accuracy of the generated code depends on the complexity of the design.")}
             <br />
-            For best result, convert smaller pieces of the design at a time, instead of the whole page.
+            {$t("For best result, convert smaller pieces of the design at a time, instead of the whole page.")}
           </p>
           <div>
             <a class="btn btn-neutral btn-wide" href="/blueprint/figma/">
@@ -2408,7 +2391,7 @@
                   ></path></g
                 ></svg
               >
-              Figma API setup guide
+              {$t("Figma API setup guide")}
             </a>
           </div>
         </div>
@@ -2418,12 +2401,12 @@
       class="rounded-box flex w-80 shrink-0 flex-col gap-4 border-s border-white/10 bg-black p-4 text-xs text-white/70 max-md:mx-auto sm:w-120"
     >
       <div class="rounded-box border border-white/5 bg-white/5 p-4">
-        Convert this Figma frame to daisyUI
+        {$t("Convert this Figma frame to daisyUI")}
         <div class="mt-[1em] break-all underline">
           https://www.figma.com/file/ABCDEFG1234567/my-design?node-id=100%3A200
         </div>
       </div>
-      <div class="opacity-30">Thought for 1s</div>
+      <div class="opacity-30">{$t("Thought for 1s")}</div>
       <div>
         <svg
           class="text-success inline-block size-3"
@@ -2439,7 +2422,7 @@
             ></path></g
           ></svg
         >
-        Using daisyUI Blueprint <span class="text-blue-500">Figma to daisyUI</span> MCP tool
+        {$t("Using daisyUI Blueprint")} <span class="text-blue-500">{$t("Figma to daisyUI")}</span> {$t("MCP tool")}
       </div>
       <div class="-m-2 grid grid-cols-[1rem_1fr_1rem] grid-rows-[1rem_1fr_1rem]">
         <div class="border-s-2 border-t-2 border-blue-600 [grid-area:1/1/2/2]"></div>
@@ -2487,7 +2470,7 @@
                   </path>
                 </g>
               </svg>
-              Received Figma design nodes from Figma API.
+              {$t("Received Figma design nodes from Figma API.")}
             </div>
             <svg class="inline-block size-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18"
               ><path
@@ -2503,8 +2486,7 @@
       </div>
 
       <div>
-        The figma design contains a pricing table with a toggle to switch between monthly and yearly
-        billing. There's a payment button at the bottom as well.
+        {$t("The figma design contains a pricing table with a toggle to switch between monthly and yearly billing. There's a payment button at the bottom as well.")}
       </div>
 
       <div>
@@ -2522,8 +2504,7 @@
             ></path></g
           ></svg
         >
-        Using daisyUI Blueprint <span class="text-blue-500">Get Snippet</span> MCP tool to get required
-        daisyUI components that match the Figma design.
+        {$t("Using daisyUI Blueprint")} <span class="text-blue-500">{$t("Get Snippet")}</span> {$t("MCP tool to get required daisyUI components that match the Figma design.")}
       </div>
 
       <div class="-m-2 grid grid-cols-[1rem_1fr_1rem] grid-rows-[1rem_1fr_1rem]">
@@ -2535,7 +2516,7 @@
         <div
           class="m-2 flex flex-col gap-2 border-2 border-blue-500 bg-white/5 p-4 outline-2 outline-offset-2 outline-white/5 [grid-area:1/1/4/4]"
         >
-          <div>Received 4 components from MCP server:</div>
+          <div>Received 4 components from {$t("MCP server")}:</div>
           <div>
             <span class="badge badge-xs gap-1 border-blue-400/10 bg-blue-400/10 text-blue-500">
               card
@@ -2554,7 +2535,7 @@
       </div>
 
       <div>
-        Perfect! Now we can generate the daisyUI code for the Figma design using these components.
+        {$t("Perfect! Now we can generate the daisyUI code for the Figma design using these components.")}
       </div>
 
       <div>
@@ -2619,13 +2600,13 @@
             index.html
           </div>
         </div>
-        <div class="py-2 opacity-50">Ask AI...</div>
+        <div class="py-2 opacity-50">{$t("Ask AI...")}</div>
         <div class="flex justify-between">
           <div class="flex gap-2 leading-none">
             <div
               class="rounded-field inline-block border border-white/5 px-1 py-0.5 text-[0.625rem]"
             >
-              Agent
+              {$t("Agent")}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -2671,7 +2652,7 @@
       <iframe
         class="h-full w-full"
         src="https://www.youtube.com/embed/4ZYKxkibJT0?mute=1&autoplay=0&controls=1&rel=0&modestbranding=1&loop=1&playlist=4ZYKxkibJT0"
-        title="Blueprint MCP server"
+        title="Blueprint {$t("MCP server")}"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
       ></iframe>
@@ -2698,7 +2679,7 @@
               fill="currentColor"
             ></path>
           </svg>
-          MCP Prompt
+          {$t("MCP Prompt")}
         </span>
         <h2
           id="feature-4"
@@ -2707,28 +2688,23 @@
           <div class="text-base-content/30 me-2 inline-block tabular-nums lg:me-4 lg:-ml-12">
             4.
           </div>
-          Convert Screenshot ➞ daisyUI
+          {$t("Convert Screenshot ➞ daisyUI")}
         </h2>
         <div>
-          <p>Attach a picture and receive daisyUI code!</p>
+          <p>{$t("Attach a picture and receive daisyUI code!")}</p>
           <p>
-            This is a detailed prompt that generates daisyUI + Tailwind CSS code from a screenshot.
+            {$t("This is a detailed prompt that generates daisyUI + Tailwind CSS code from a screenshot.")}
           </p>
           <p>
-            The prompt guides the AI to analyze the screenshot, identify UI components, and generate
-            the corresponding daisyUI code using existing daisyUI components which will be received
-            from daisyUI Blueprint MCP server.
+            {$t("The prompt guides the AI to analyze the screenshot, identify UI components, and generate the corresponding daisyUI code using existing daisyUI components which will be received from daisyUI Blueprint MCP server.")}
           </p>
           <p>
-            <span class="font-semibold">This works with any screenshot of a web UI</span>, whether
-            it's from a design tool, a live website, or a mobile app. AI will understand the context
-            of the elements and generate the closest daisyUI code.
+            <span class="font-semibold">{$t("This works with any screenshot of a web UI")}</span>, {$t("whether it's from a design tool, a live website, or a mobile app. AI will understand the context of the elements and generate the closest daisyUI code.")}
           </p>
           <p class="alert alert-soft alert-info">
-            The accuracy of the generated code depends on the clarity and complexity of the
-            screenshot.
+            {$t("The accuracy of the generated code depends on the clarity and complexity of the screenshot.")}
             <br />
-            For best result, use smaller parts of the UI instead of a full-page screenshot.
+            {$t("For best result, use smaller parts of the UI instead of a full-page screenshot.")}
           </p>
         </div>
       </div>
@@ -2737,7 +2713,7 @@
       class="rounded-box flex w-80 shrink-0 flex-col gap-4 border-s border-white/10 bg-black p-4 text-xs text-white/70 max-md:mx-auto sm:w-120"
     >
       <div class="rounded-box border border-white/5 bg-white/5 p-4">
-        Convert this image to daisyUI code
+        {$t("Convert this image to daisyUI code")}
         <div class="mt-2 flex gap-2 leading-none">
           <div
             class="rounded-field flex items-center border border-white/5 px-1 py-0.5 text-[0.625rem]"
@@ -2766,7 +2742,7 @@
             ></path></g
           ></svg
         >
-        Using <span class="text-blue-500">daisyUI Blueprint</span> MCP prompt
+        {$t("Using")} <span class="text-blue-500">daisyUI Blueprint</span> MCP prompt
       </div>
       <div class="-m-2 grid grid-cols-[1rem_1fr_1rem] grid-rows-[1rem_1fr_1rem]">
         <div class="border-s-2 border-t-2 border-blue-600 [grid-area:1/1/2/2]"></div>
@@ -2778,7 +2754,7 @@
           class="m-2 flex flex-col gap-2 border-2 border-blue-500 bg-white/5 p-4 outline-2 outline-offset-2 outline-white/5 [grid-area:1/1/4/4]"
         >
           <div class="flex justify-between">
-            <div>Image to daisyUI conversion</div>
+            <div>{$t("Image to daisyUI conversion")}</div>
             <svg class="inline-block size-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18"
               ><path
                 d="M9.53,2.22c-.293-.293-.768-.293-1.061,0l-3.5,3.5c-.293,.293-.293,.768,0,1.061s.768,.293,1.061,0l2.97-2.97,2.97,2.97c.146,.146,.338,.22,.53,.22s.384-.073,.53-.22c.293-.293,.293-.768,0-1.061l-3.5-3.5Z"
@@ -2791,17 +2767,17 @@
           </div>
 
           <div>
-            You are analyzing a UI screenshot to recreate it using daisyUI components.
-            <br />Follow below steps strictly. If you miss any step, your code will be rejected.
+            {$t("You are analyzing a UI screenshot to recreate it using daisyUI components.")}
+            <br />{$t("Follow below steps strictly. If you miss any step, your code will be rejected.")}
             <br />
-            <br />## Step By Step Instructions:
-            <br />1. Carefully examine the screenshot provided...
+            <br />{$t("## Step By Step Instructions:")}
+            <br />{$t("1. Carefully examine the screenshot provided...")}
           </div>
           <div>
             <div
               class="rounded-field inline-block border border-white/5 px-1 py-0.5 text-[0.625rem]"
             >
-              More
+              {$t("More")}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -2816,8 +2792,7 @@
       </div>
 
       <div>
-        The screenshot shows a settings page with a sidebar on the left and various settings options
-        on the right. Now we need to identify the daisyUI components required to build this UI.
+        {$t("The screenshot shows a settings page with a sidebar on the left and various settings options on the right. Now we need to identify the daisyUI components required to build this UI.")}
       </div>
       <div>
         <svg
@@ -2834,8 +2809,7 @@
             ></path></g
           ></svg
         >
-        Using daisyUI Blueprint <span class="text-blue-500">Get Snippet</span> MCP tool to get required
-        daisyUI components that match the UI from the screenshot.
+        {$t("Using daisyUI Blueprint")} <span class="text-blue-500">{$t("Get Snippet")}</span> {$t("MCP tool to get required daisyUI components that match the UI from the screenshot.")}
       </div>
 
       <div class="-m-2 grid grid-cols-[1rem_1fr_1rem] grid-rows-[1rem_1fr_1rem]">
@@ -2847,7 +2821,7 @@
         <div
           class="m-2 flex flex-col gap-2 border-2 border-blue-500 bg-white/5 p-4 outline-2 outline-offset-2 outline-white/5 [grid-area:1/1/4/4]"
         >
-          <div>Received 7 components from MCP server:</div>
+          <div>Received 7 components from {$t("MCP server")}:</div>
           <div>
             <span class="badge badge-xs gap-1 border-blue-400/10 bg-blue-400/10 text-blue-500">
               drawer
@@ -2874,7 +2848,7 @@
         </div>
       </div>
 
-      <div>Perfect! Now we can generate the daisyUI code using these components.</div>
+      <div>{$t("Perfect! Now we can generate the daisyUI code using these components.")}</div>
 
       <div>
         <span class="badge badge-xs gap-1 border-white/10 bg-white/10 text-white"
@@ -2937,13 +2911,13 @@
             index.html
           </div>
         </div>
-        <div class="py-2 opacity-50">Ask AI...</div>
+        <div class="py-2 opacity-50">{$t("Ask AI...")}</div>
         <div class="flex justify-between">
           <div class="flex gap-2 leading-none">
             <div
               class="rounded-field inline-block border border-white/5 px-1 py-0.5 text-[0.625rem]"
             >
-              Agent
+              {$t("Agent")}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -3004,7 +2978,7 @@
               fill="currentColor"
             ></path>
           </svg>
-          MCP Prompt
+          {$t("MCP Prompt")}
         </span>
         <h2
           id="feature-5"
@@ -3013,14 +2987,14 @@
           <div class="text-base-content/30 me-2 inline-block tabular-nums lg:me-4 lg:-ml-12">
             5.
           </div>
-          Convert Tailwind CSS ➞ daisyUI
+          {$t("Convert Tailwind CSS ➞ daisyUI")}
         </h2>
         <div>
-          <p>Convert existing Tailwind CSS code to daisyUI components effortlessly!</p>
+          <p>{$t("Convert existing Tailwind CSS code to daisyUI components effortlessly!")}</p>
           <p>
-            This is a detailed prompt provided by Blueprint MCP server that helps AI to analyze
+            This is a detailed prompt provided by Blueprint {$t("MCP server")} that helps AI to analyze
             existing Tailwind CSS code blocks, identify UI components, that can be replaced with
-            daisyUI components, then it uses daisyUI MCP server to get the required components and
+            daisyUI components, then it uses daisyUI {$t("MCP server")} to get the required components and
             finally generates the updated code with daisyUI components.
           </p>
           <p>
@@ -3035,7 +3009,7 @@
       class="rounded-box flex w-80 shrink-0 flex-col gap-4 border-s border-white/10 bg-black p-4 text-xs text-white/70 max-md:mx-auto sm:w-120"
     >
       <div class="rounded-box border border-white/5 bg-white/5 p-4">
-        Convert this page from Tailwind CSS to daisyUI
+        {$t("Convert this page from Tailwind CSS to daisyUI")}
         <div class="mt-2 flex gap-2 leading-none">
           <div
             class="rounded-field flex items-center border border-white/5 px-1 py-0.5 text-[0.625rem]"
@@ -3059,7 +3033,7 @@
             ></path></g
           ></svg
         >
-        Using <span class="text-blue-500">daisyUI Blueprint</span> MCP prompt
+        {$t("Using")} <span class="text-blue-500">daisyUI Blueprint</span> MCP prompt
       </div>
       <div class="-m-2 grid grid-cols-[1rem_1fr_1rem] grid-rows-[1rem_1fr_1rem]">
         <div class="border-s-2 border-t-2 border-blue-600 [grid-area:1/1/2/2]"></div>
@@ -3071,7 +3045,7 @@
           class="m-2 flex flex-col gap-2 border-2 border-blue-500 bg-white/5 p-4 outline-2 outline-offset-2 outline-white/5 [grid-area:1/1/4/4]"
         >
           <div class="flex justify-between">
-            <div>Tailwind CSS to daisyUI conversion</div>
+            <div>{$t("Tailwind CSS to daisyUI conversion")}</div>
             <svg class="inline-block size-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18"
               ><path
                 d="M9.53,2.22c-.293-.293-.768-.293-1.061,0l-3.5,3.5c-.293,.293-.293,.768,0,1.061s.768,.293,1.061,0l2.97-2.97,2.97,2.97c.146,.146,.338,.22,.53,.22s.384-.073,.53-.22c.293-.293,.293-.768,0-1.061l-3.5-3.5Z"
@@ -3094,7 +3068,7 @@
             <div
               class="rounded-field inline-block border border-white/5 px-1 py-0.5 text-[0.625rem]"
             >
-              More
+              {$t("More")}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -3127,8 +3101,7 @@
             ></path></g
           ></svg
         >
-        Using daisyUI Blueprint <span class="text-blue-500">Get Snippet</span> MCP tool to get required
-        daisyUI components that match the UI from the screenshot.
+        {$t("Using daisyUI Blueprint")} <span class="text-blue-500">{$t("Get Snippet")}</span> {$t("MCP tool to get required daisyUI components that match the UI from the screenshot.")}
       </div>
 
       <div class="-m-2 grid grid-cols-[1rem_1fr_1rem] grid-rows-[1rem_1fr_1rem]">
@@ -3140,7 +3113,7 @@
         <div
           class="m-2 flex flex-col gap-2 border-2 border-blue-500 bg-white/5 p-4 outline-2 outline-offset-2 outline-white/5 [grid-area:1/1/4/4]"
         >
-          <div>Received 7 components from MCP server:</div>
+          <div>Received 7 components from {$t("MCP server")}:</div>
           <div>
             <span class="badge badge-xs gap-1 border-blue-400/10 bg-blue-400/10 text-blue-500">
               drawer
@@ -3167,7 +3140,7 @@
         </div>
       </div>
 
-      <div>Perfect! Now we can generate the daisyUI code using these components.</div>
+      <div>{$t("Perfect! Now we can generate the daisyUI code using these components.")}</div>
 
       <div>
         <span class="badge badge-xs gap-1 border-white/10 bg-white/10 text-white"
@@ -3204,7 +3177,7 @@
             ></path></g
           ></svg
         >
-        Done. All the the parts that could be converted to daisyUI components have been updated. Now the
+        {$t("Done.")} All the the parts that could be converted to daisyUI components have been updated. Now the
         page is smaller and uses less class names.
       </div>
 
@@ -3231,13 +3204,13 @@
             index.html
           </div>
         </div>
-        <div class="py-2 opacity-50">Ask AI...</div>
+        <div class="py-2 opacity-50">{$t("Ask AI...")}</div>
         <div class="flex justify-between">
           <div class="flex gap-2 leading-none">
             <div
               class="rounded-field inline-block border border-white/5 px-1 py-0.5 text-[0.625rem]"
             >
-              Agent
+              {$t("Agent")}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -3283,7 +3256,7 @@
       <iframe
         class="h-full w-full"
         src="https://www.youtube.com/embed/S4Xz2iEMaAA?mute=1&autoplay=0&controls=1&rel=0&modestbranding=1&loop=1&playlist=S4Xz2iEMaAA"
-        title="Blueprint MCP server"
+        title="Blueprint {$t("MCP server")}"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
       ></iframe>
@@ -3310,7 +3283,7 @@
               fill="currentColor"
             ></path>
           </svg>
-          MCP Prompt
+          {$t("MCP Prompt")}
         </span>
         <h2
           id="feature-6"
@@ -3319,14 +3292,14 @@
           <div class="text-base-content/30 me-2 inline-block tabular-nums lg:me-4 lg:-ml-12">
             6.
           </div>
-          Convert Bootstrap ➞ daisyUI
+          {$t("Convert Bootstrap ➞ daisyUI")}
         </h2>
         <div>
-          <p>Convert existing Bootstrap code to daisyUI components effortlessly!</p>
+          <p>{$t("Convert existing Bootstrap code to daisyUI components effortlessly!")}</p>
           <p>
-            This is a detailed prompt provided by Blueprint MCP server that helps AI to analyze
+            This is a detailed prompt provided by Blueprint {$t("MCP server")} that helps AI to analyze
             existing Bootstrap code blocks, identify UI components, that can be replaced with
-            daisyUI components, then it uses daisyUI MCP server to get the required components and
+            daisyUI components, then it uses daisyUI {$t("MCP server")} to get the required components and
             finally generates the updated code with daisyUI components.
           </p>
           <p>
@@ -3341,7 +3314,7 @@
       class="rounded-box flex w-80 shrink-0 flex-col gap-4 border-s border-white/10 bg-black p-4 text-xs text-white/70 max-md:mx-auto sm:w-120"
     >
       <div class="rounded-box border border-white/5 bg-white/5 p-4">
-        Convert this page from Bootstrap to daisyUI
+        {$t("Convert this page from Bootstrap to daisyUI")}
         <div class="mt-2 flex gap-2 leading-none">
           <div
             class="rounded-field flex items-center border border-white/5 px-1 py-0.5 text-[0.625rem]"
@@ -3365,7 +3338,7 @@
             ></path></g
           ></svg
         >
-        Using <span class="text-blue-500">daisyUI Blueprint</span> MCP prompt
+        {$t("Using")} <span class="text-blue-500">daisyUI Blueprint</span> MCP prompt
       </div>
       <div class="-m-2 grid grid-cols-[1rem_1fr_1rem] grid-rows-[1rem_1fr_1rem]">
         <div class="border-s-2 border-t-2 border-blue-600 [grid-area:1/1/2/2]"></div>
@@ -3377,7 +3350,7 @@
           class="m-2 flex flex-col gap-2 border-2 border-blue-500 bg-white/5 p-4 outline-2 outline-offset-2 outline-white/5 [grid-area:1/1/4/4]"
         >
           <div class="flex justify-between">
-            <div>Bootstrap to daisyUI conversion</div>
+            <div>{$t("Bootstrap to daisyUI conversion")}</div>
             <svg class="inline-block size-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18"
               ><path
                 d="M9.53,2.22c-.293-.293-.768-.293-1.061,0l-3.5,3.5c-.293,.293-.293,.768,0,1.061s.768,.293,1.061,0l2.97-2.97,2.97,2.97c.146,.146,.338,.22,.53,.22s.384-.073,.53-.22c.293-.293,.293-.768,0-1.061l-3.5-3.5Z"
@@ -3400,7 +3373,7 @@
             <div
               class="rounded-field inline-block border border-white/5 px-1 py-0.5 text-[0.625rem]"
             >
-              More
+              {$t("More")}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -3433,8 +3406,7 @@
             ></path></g
           ></svg
         >
-        Using daisyUI Blueprint <span class="text-blue-500">Get Snippet</span> MCP tool to get required
-        daisyUI components that match the UI from the screenshot.
+        {$t("Using daisyUI Blueprint")} <span class="text-blue-500">{$t("Get Snippet")}</span> {$t("MCP tool to get required daisyUI components that match the UI from the screenshot.")}
       </div>
 
       <div class="-m-2 grid grid-cols-[1rem_1fr_1rem] grid-rows-[1rem_1fr_1rem]">
@@ -3446,7 +3418,7 @@
         <div
           class="m-2 flex flex-col gap-2 border-2 border-blue-500 bg-white/5 p-4 outline-2 outline-offset-2 outline-white/5 [grid-area:1/1/4/4]"
         >
-          <div>Received 7 components from MCP server:</div>
+          <div>Received 7 components from {$t("MCP server")}:</div>
           <div>
             <span class="badge badge-xs gap-1 border-blue-400/10 bg-blue-400/10 text-blue-500">
               drawer
@@ -3473,7 +3445,7 @@
         </div>
       </div>
 
-      <div>Perfect! Now we can generate the daisyUI code using these components.</div>
+      <div>{$t("Perfect! Now we can generate the daisyUI code using these components.")}</div>
 
       <div>
         <span class="badge badge-xs gap-1 border-white/10 bg-white/10 text-white"
@@ -3510,7 +3482,7 @@
             ></path></g
           ></svg
         >
-        Done. All the the parts that could be converted to daisyUI components have been updated. Now the
+        {$t("Done.")} All the the parts that could be converted to daisyUI components have been updated. Now the
         page is smaller and uses less class names.
       </div>
 
@@ -3537,13 +3509,13 @@
             index.html
           </div>
         </div>
-        <div class="py-2 opacity-50">Ask AI...</div>
+        <div class="py-2 opacity-50">{$t("Ask AI...")}</div>
         <div class="flex justify-between">
           <div class="flex gap-2 leading-none">
             <div
               class="rounded-field inline-block border border-white/5 px-1 py-0.5 text-[0.625rem]"
             >
-              Agent
+              {$t("Agent")}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -3604,7 +3576,7 @@
               fill="currentColor"
             ></path>
           </svg>
-          MCP Prompt
+          {$t("MCP Prompt")}
         </span>
         <h2
           id="feature-7"
@@ -3613,7 +3585,7 @@
           <div class="text-base-content/30 me-2 inline-block tabular-nums lg:me-4 lg:-ml-12">
             7.
           </div>
-          Extract Color Palette from a picture to generate daisyUI Theme
+          {$t("Extract Color Palette from a picture to generate daisyUI Theme")}
         </h2>
         <div>
           <p>
@@ -3624,7 +3596,7 @@
             for you.
           </p>
           <p>
-            Then daisyUI MCP server will generate a custom daisyUI theme based on the extracted
+            Then daisyUI {$t("MCP server")} will generate a custom daisyUI theme based on the extracted
             colors.
           </p>
         </div>
@@ -3634,7 +3606,7 @@
       class="rounded-box flex w-80 shrink-0 flex-col gap-4 border-s border-white/10 bg-black p-4 text-xs text-white/70 max-md:mx-auto sm:w-120"
     >
       <div class="rounded-box border border-white/5 bg-white/5 p-4">
-        Generate a dark daisyUI theme based on the colors in this picture
+        {$t("Generate a dark daisyUI theme based on the colors in this picture")}
         <div class="mt-2 flex gap-2 leading-none">
           <div
             class="rounded-field flex items-center border border-white/5 px-1 py-0.5 text-[0.625rem]"
@@ -3668,7 +3640,7 @@
             ></path></g
           ></svg
         >
-        Using <span class="text-blue-500">daisyUI Blueprint</span> MCP prompt
+        {$t("Using")} <span class="text-blue-500">daisyUI Blueprint</span> MCP prompt
       </div>
       <div class="-m-2 grid grid-cols-[1rem_1fr_1rem] grid-rows-[1rem_1fr_1rem]">
         <div class="border-s-2 border-t-2 border-blue-600 [grid-area:1/1/2/2]"></div>
@@ -3680,7 +3652,7 @@
           class="m-2 flex flex-col gap-2 border-2 border-blue-500 bg-white/5 p-4 outline-2 outline-offset-2 outline-white/5 [grid-area:1/1/4/4]"
         >
           <div class="flex justify-between">
-            <div>Extract dominant colors from picture</div>
+            <div>{$t("Extract dominant colors from picture")}</div>
             <svg class="inline-block size-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18"
               ><path
                 d="M9.53,2.22c-.293-.293-.768-.293-1.061,0l-3.5,3.5c-.293,.293-.293,.768,0,1.061s.768,.293,1.061,0l2.97-2.97,2.97,2.97c.146,.146,.338,.22,.53,.22s.384-.073,.53-.22c.293-.293,.293-.768,0-1.061l-3.5-3.5Z"
@@ -3704,7 +3676,7 @@
             <div
               class="rounded-field inline-block border border-white/5 px-1 py-0.5 text-[0.625rem]"
             >
-              More
+              {$t("More")}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -3737,8 +3709,7 @@
             ></path></g
           ></svg
         >
-        Using daisyUI Blueprint <span class="text-blue-500">Get Snippet</span> MCP tool to get required
-        daisyUI examples.
+        {$t("Using daisyUI Blueprint")} <span class="text-blue-500">{$t("Get Snippet")}</span> {$t("MCP tool to get required daisyUI examples.")}
       </div>
 
       <div class="-m-2 grid grid-cols-[1rem_1fr_1rem] grid-rows-[1rem_1fr_1rem]">
@@ -3750,7 +3721,7 @@
         <div
           class="m-2 flex flex-col gap-2 border-2 border-blue-500 bg-white/5 p-4 outline-2 outline-offset-2 outline-white/5 [grid-area:1/1/4/4]"
         >
-          <div>Received 2 snippets from MCP server:</div>
+          <div>Received 2 snippets from {$t("MCP server")}:</div>
           <div>
             <span class="badge badge-xs gap-1 border-blue-400/10 bg-blue-400/10 text-blue-500">
               colors
@@ -3828,13 +3799,13 @@
             index.html
           </div>
         </div>
-        <div class="py-2 opacity-50">Ask AI...</div>
+        <div class="py-2 opacity-50">{$t("Ask AI...")}</div>
         <div class="flex justify-between">
           <div class="flex gap-2 leading-none">
             <div
               class="rounded-field inline-block border border-white/5 px-1 py-0.5 text-[0.625rem]"
             >
-              Agent
+              {$t("Agent")}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -3875,7 +3846,7 @@
     </div>
   </div>
 
-  <!-- Layouts and code blocks -->
+  <!-- {$t("Layouts and code blocks")} -->
 
   <div class="relative mt-20 flex items-start gap-12 max-lg:flex-col lg:flex-row-reverse lg:gap-24">
     <div class="grow">
@@ -3891,7 +3862,7 @@
               d="M428 336h825q75 0 75 75v900q0 25-18 43l-64 64q-8 8-13 5.5t-5-12.5V461q0-10-7.5-17.5T1203 436H503q-25 0-43 18l-64 64q-8 8-5.5 13t12.5 5h700q10 0 17.5 7.5t7.5 17.5v950q0 10-7.5 17.5t-17.5 7.5H253q-10 0-17.5-7.5T228 1511V536q0-25 18-43l139-139q18-18 43-18z"
             ></path>
           </svg>
-          MCP Resource
+          {$t("MCP Resource")}
         </span>
         <h2
           id="feature-8"
@@ -3900,11 +3871,11 @@
           <div class="text-base-content/30 me-2 inline-block tabular-nums lg:me-4 lg:-ml-12">
             8.
           </div>
-          Layouts and code blocks
+          {$t("Layouts and code blocks")}
         </h2>
         <div>
           <p>
-            Blueprint MCP server includes layout examples and code blocks for useful design
+            Blueprint {$t("MCP server")} includes layout examples and code blocks for useful design
             patterns.
           </p>
           <p>
@@ -3925,12 +3896,9 @@
       class="rounded-box flex w-80 shrink-0 flex-col gap-4 border-s border-white/10 bg-black p-4 text-xs text-white/70 max-md:mx-auto sm:w-120"
     >
       <div class="rounded-box border border-white/5 bg-white/5 p-4">
-        Create a collapsible daisyUI drawer sidebar. It should be icon only/or expanded on desktop.
-        I should be off-canvas on mobile. Put a menu inside the sidebar with 4 items: Dashboard,
-        Settings, Profile, Logout. Add proper icons. Also add a settings button at the bottom of the
-        sidebar.
+        {$t("Create a collapsible daisyUI drawer sidebar. It should be icon only/or expanded on desktop. I should be off-canvas on mobile. Put a menu inside the sidebar with 4 items: Dashboard, Settings, Profile, Logout. Add proper icons. Also add a settings button at the bottom of the sidebar.")}
       </div>
-      <div class="opacity-30">Thought for 1s</div>
+      <div class="opacity-30">{$t("Thought for 1s")}</div>
       <div>
         <svg
           class="text-success inline-block size-3"
@@ -3946,7 +3914,7 @@
             ></path></g
           ></svg
         >
-        Using <span class="text-blue-500">daisyUI Blueprint</span> MCP
+        {$t("Using")} <span class="text-blue-500">daisyUI Blueprint</span> MCP
       </div>
       <div class="-m-2 grid grid-cols-[1rem_1fr_1rem] grid-rows-[1rem_1fr_1rem]">
         <div class="border-s-2 border-t-2 border-blue-600 [grid-area:1/1/2/2]"></div>
@@ -3974,7 +3942,7 @@
                   ></path>
                 </g>
               </svg>
-              <span class="opacity-50">Ran</span>
+              <span class="opacity-50">{$t("Ran")}</span>
               <span class="badge badge-xs gap-1 border-blue-400/10 bg-blue-400/10 text-blue-500">
                 <svg
                   class="size-3 fill-current opacity-50"
@@ -3987,7 +3955,7 @@
                 </svg>
                 daisyUI Blueprint
               </span>
-              <span class="opacity-50">MCP tool</span>
+              <span class="opacity-50">{$t("MCP tool")}</span>
             </div>
             <svg class="inline-block size-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
               <path
@@ -4000,7 +3968,7 @@
               ></path>
             </svg>
           </div>
-          <div>Received required code snippets from MCP:</div>
+          <div>{$t("Received required code snippets from MCP:")}</div>
           <div>
             <span class="badge badge-xs gap-1 border-blue-400/10 bg-blue-400/10 text-blue-500"
               >collapsible sidebar</span
@@ -4032,7 +4000,7 @@
                 ></path>
               </g>
             </svg>
-            Reading specs, docs and examples.
+            {$t("Reading specs, docs and examples.")}
           </div>
           <div>
             <svg
@@ -4050,14 +4018,13 @@
                 ></path>
               </g>
             </svg>
-            Done.
+            {$t("Done.")}
           </div>
         </div>
       </div>
 
       <div>
-        Perfect. Now let's combine these components into a cohesive layout, according to the
-        instructions provided and the design specs.
+        {$t("Perfect. Now let's combine these components into a cohesive layout, according to the instructions provided and the design specs.")}
       </div>
 
       <div>
@@ -4080,7 +4047,7 @@
         >
       </div>
 
-      <p>collapsible drawer sidebar was added to index.html</p>
+      <p>{$t("collapsible drawer sidebar was added to index.html")}</p>
 
       <!-- AI input -->
       <div class="rounded-box border border-white/5 bg-white/5 p-2">
@@ -4105,13 +4072,13 @@
             index.html
           </div>
         </div>
-        <div class="py-2 opacity-50">Ask AI...</div>
+        <div class="py-2 opacity-50">{$t("Ask AI...")}</div>
         <div class="flex justify-between">
           <div class="flex gap-2 leading-none">
             <div
               class="rounded-field inline-block border border-white/5 px-1 py-0.5 text-[0.625rem]"
             >
-              Agent
+              {$t("Agent")}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -4168,9 +4135,9 @@
             BLUEPRINT
           </div>
         </div>
-        vs. other tools
+        {$t("vs. other tools")}
         <br />
-        to generate daisyUI code
+        {$t("to generate daisyUI code")}
       </div>
     </div>
 
@@ -4180,7 +4147,7 @@
         <thead>
           <tr>
             {#each compareTable[0] as header, headerIndex}
-              <th class:text-center={headerIndex !== 0}>{@html header}</th>
+              <th class:text-center={headerIndex !== 0}>{@html header ? $t(header) : ""}</th>
             {/each}
           </tr>
         </thead>
@@ -4225,7 +4192,7 @@
                       </svg>
                     {/if}
                   {:else}
-                    {@html cell}
+                    {@html $t(cell)}
                   {/if}
                 </td>
               {/each}
@@ -4241,7 +4208,7 @@
   <div id="steps" class="mt-40 flex justify-center">
     <div class="flex w-full max-w-3xl flex-col items-center gap-2">
       <div class="font-title mb-8 flex items-center text-lg lg:text-[1.75rem]">
-        Get Started with daisyUI
+        {$t("Get Started with daisyUI")}
         <div
           class="ms-1 inline-grid grid-cols-[.5rem_1fr_.5rem] grid-rows-[.5rem_1fr_.5rem] align-middle"
         >
@@ -4274,7 +4241,7 @@
                 ></path><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle></g
               ></svg
             >
-            Get a Licence
+            {$t("Get a Licence")}
           </a>
         </li>
         <li class="step">
@@ -4299,7 +4266,7 @@
                 stroke-width="4"
               ></path></svg
             >
-            Install MCP server
+            {$t("Install MCP server")}
           </a>
         </li>
         <li class="step">
@@ -4313,7 +4280,7 @@
                 d="M248 850c-22.667 0 -41.333 -9.333 -56 -28c0 0 -180 -236 -180 -236c-10.667 -16 -14.667 -33.333 -12 -52c2.667 -18.667 11.333 -34 26 -46c14.667 -12 31.667 -16.667 51 -14c19.333 2.667 35 12 47 28c0 0 118 154 118 154c0 0 296 -474 296 -474c10.667 -16 25 -26 43 -30c18 -4 35.667 -1.333 53 8c16 10.667 26 25 30 43c4 18 1.333 35.667 -8 53c0 0 -350 560 -350 560c-13.333 21.333 -32 32 -56 32c0 0 -2 2 -2 2"
               ></path></svg
             >
-            Generate daisyUI code
+            {$t("Generate daisyUI code")}
           </div>
         </li>
       </ul>
@@ -4329,117 +4296,104 @@
             F.A.Q
           </h2>
           <p class="text-base-content/60 text-xs">
-            If you have any questions before purchase <br />send me an email to help@daisyui.com
-            <br />I will do my best to help you.
+            {@html $t("If you have any questions before purchase <br />send me an email to help@daisyui.com")}
+            <br />{$t("I will do my best to help you.")}
           </p>
         </div>
         <div>
           <div class="collapse-plus collapse">
             <input type="radio" name="faq" class="min-h-0!" />
             <div class="collapse-title min-h-0! text-sm font-semibold">
-              Is this one time payment or a subscription?
+              {$t("Is this one time payment or a subscription?")}
             </div>
             <div
               class="collapse-content text-base-content/70 border-base-content/10 ms-4 border-s-2 px-6 text-xs"
             >
-              Both are possible. You can purchase a monthly licence, yearly license or a lifetime
-              license.
+              {$t("Both are possible. You can purchase a monthly licence, yearly license or a lifetime license.")}
             </div>
           </div>
           <div class="collapse-plus collapse">
             <input type="radio" name="faq" class="min-h-0!" />
             <div class="collapse-title min-h-0! text-sm font-semibold">
-              What happens after I pay?
+              {$t("What happens after I pay?")}
             </div>
             <div
               class="collapse-content text-base-content/70 border-base-content/10 ms-4 border-s-2 px-6 text-xs"
             >
-              You will receive an email address with a license key which you can use to activate the
-              MCP server. If you don't see the email, check your spam folder.
+              {$t("You will receive an email address with a license key which you can use to activate the MCP server. If you don't see the email, check your spam folder.")}
             </div>
           </div>
           <div class="collapse-plus collapse">
             <input type="radio" name="faq" class="min-h-0!" />
-            <div class="collapse-title min-h-0! text-sm font-semibold">Will I receive updates?</div>
+            <div class="collapse-title min-h-0! text-sm font-semibold">{$t("Will I receive updates?")}</div>
             <div
               class="collapse-content text-base-content/70 border-base-content/10 ms-4 border-s-2 px-6 text-xs"
             >
-              Yes, the package will be updated automatically with latest version of daisyUI. New MCP
-              tools, MCP resources and MCP prompts will be added automatically.
-            </div>
-          </div>
-          <div class="collapse-plus collapse">
-            <input type="radio" name="faq" class="min-h-0!" />
-            <div class="collapse-title min-h-0! text-sm font-semibold">
-              Do I get customer support?
-            </div>
-            <div
-              class="collapse-content text-base-content/70 border-base-content/10 ms-4 border-s-2 px-6 text-xs"
-            >
-              We offer support via Discord. You can join the server https://daisyui.com/discord and
-              ask your questions there. We will do our best to help you.
+              {$t("Yes, the package will be updated automatically with latest version of daisyUI. New MCP tools, MCP resources and MCP prompts will be added automatically.")}
             </div>
           </div>
           <div class="collapse-plus collapse">
             <input type="radio" name="faq" class="min-h-0!" />
             <div class="collapse-title min-h-0! text-sm font-semibold">
-              Can I cancel my subscription?
+              {$t("Do I get customer support?")}
             </div>
             <div
               class="collapse-content text-base-content/70 border-base-content/10 ms-4 border-s-2 px-6 text-xs"
             >
-              Yes you can cancel your subscription at any time at
-              https://www.creem.io/my-orders/login. If you cancel, you will still have access to the
-              product until the end of your billing cycle.
-            </div>
-          </div>
-          <div class="collapse-plus collapse">
-            <input type="radio" name="faq" class="min-h-0!" />
-            <div class="collapse-title min-h-0! text-sm font-semibold">Can I get a refund?</div>
-            <div
-              class="collapse-content text-base-content/70 border-base-content/10 ms-4 border-s-2 px-6 text-xs"
-            >
-              If there was an issue, send an email to help@daisyui.com so I can help you. I will do
-              my best to resolve the issue. We don't offer refunds for digital products, however if
-              there was a mistake in payment, for example if you paid twice, send an email to
-              help@daisyui.com.
+              {$t("We offer support via Discord. You can join the server https://daisyui.com/discord and ask your questions there. We will do our best to help you.")}
             </div>
           </div>
           <div class="collapse-plus collapse">
             <input type="radio" name="faq" class="min-h-0!" />
             <div class="collapse-title min-h-0! text-sm font-semibold">
-              I didn't receive the email
+              {$t("Can I cancel my subscription?")}
             </div>
             <div
               class="collapse-content text-base-content/70 border-base-content/10 ms-4 border-s-2 px-6 text-xs"
             >
-              Please check your spam folder. If you still can't find it, send an email to
-              help@daisyui.com so I can help you.
+              {$t("Yes you can cancel your subscription at any time at https://www.creem.io/my-orders/login. If you cancel, you will still have access to the product until the end of your billing cycle.")}
+            </div>
+          </div>
+          <div class="collapse-plus collapse">
+            <input type="radio" name="faq" class="min-h-0!" />
+            <div class="collapse-title min-h-0! text-sm font-semibold">{$t("Can I get a refund?")}</div>
+            <div
+              class="collapse-content text-base-content/70 border-base-content/10 ms-4 border-s-2 px-6 text-xs"
+            >
+              {$t("If there was an issue, send an email to help@daisyui.com so I can help you. I will do my best to resolve the issue. We don't offer refunds for digital products, however if there was a mistake in payment, for example if you paid twice, send an email to help@daisyui.com.")}
             </div>
           </div>
           <div class="collapse-plus collapse">
             <input type="radio" name="faq" class="min-h-0!" />
             <div class="collapse-title min-h-0! text-sm font-semibold">
-              I bought the wrong package
+              {$t("I didn't receive the email")}
             </div>
             <div
               class="collapse-content text-base-content/70 border-base-content/10 ms-4 border-s-2 px-6 text-xs"
             >
-              Send me an email at help@daisyui.com and I will help you get the right package.
+              {$t("Please check your spam folder. If you still can't find it, send an email to help@daisyui.com so I can help you.")}
             </div>
           </div>
           <div class="collapse-plus collapse">
             <input type="radio" name="faq" class="min-h-0!" />
             <div class="collapse-title min-h-0! text-sm font-semibold">
-              There was an issue with the payment
+              {$t("I bought the wrong package")}
             </div>
             <div
               class="collapse-content text-base-content/70 border-base-content/10 ms-4 border-s-2 px-6 text-xs"
             >
-              If the payment failed and you didn't receive the product, it usually means the payment
-              didn't go through. Please try again. If the money was deducted from your account, it
-              will be refunded automatically within a week or two. If the issue persists, send an
-              email to help@daisyui.com so I can help you.
+              {$t("Send me an email at help@daisyui.com and I will help you get the right package.")}
+            </div>
+          </div>
+          <div class="collapse-plus collapse">
+            <input type="radio" name="faq" class="min-h-0!" />
+            <div class="collapse-title min-h-0! text-sm font-semibold">
+              {$t("There was an issue with the payment")}
+            </div>
+            <div
+              class="collapse-content text-base-content/70 border-base-content/10 ms-4 border-s-2 px-6 text-xs"
+            >
+              {$t("If the payment failed and you didn't receive the product, it usually means the payment didn't go through. Please try again. If the money was deducted from your account, it will be refunded automatically within a week or two. If the issue persists, send an email to help@daisyui.com so I can help you.")}
             </div>
           </div>
         </div>
@@ -4453,7 +4407,7 @@
   <div class="flex justify-center">
     <div class="flex flex-col items-center gap-2">
       <div class="font-title mb-8 flex items-center text-lg lg:text-[1.75rem]">
-        Official daisyUI Code Generator MCP Server
+        {$t("Official daisyUI Code Generator MCP Server")}
       </div>
       <div class="mb-4 inline-grid grid-cols-[1rem_1fr_1rem] grid-rows-[1rem_1fr_1rem]">
         <div class="border-s-2 border-t-2 border-blue-600 [grid-area:1/1/2/2]"></div>
@@ -4502,11 +4456,11 @@
           src="https://img.daisyui.com/images/logos/claude.webp"
           alt="Claude"
         />
-        <div class="ps-2 text-[0.625rem]">daisyUI Blueprint MCP server</div>
+        <div class="ps-2 text-[0.625rem]">{$t("daisyUI Blueprint MCP server")}</div>
       </div>
-      <a class="btn btn-sm" href="/blueprint/cursor/"> Install guide </a>
+      <a class="btn btn-sm" href="/blueprint/cursor/"> {$t("Install guide")} </a>
       <a class="btn btn-neutral btn-sm" href={checkoutUrl} target="_blank" rel="noopener noreferrer"
-        >Get the license</a
+        >{$t("Get the license")}</a
       >
     </div>
   </div>
