@@ -4,7 +4,7 @@
   import Sidebar from "$components/Sidebar.svelte"
   import Search from "$components/Search.svelte"
   import { page } from "$app/stores"
-  import { setLang } from "$lib/i18n.svelte.js"
+  import { loadRouteTranslations, setLang } from "$lib/i18n.svelte.js"
   import { onNavigate } from "$app/navigation"
   import minimalAnalytics from "@minimal-analytics/ga4"
   const { track } = minimalAnalytics
@@ -28,14 +28,24 @@
 
   onNavigate((navigation) => {
     track("G-10F40JCSMZ")
-    if (!document.startViewTransition) return
+
+    const routeTranslations = navigation.to?.url
+      ? loadRouteTranslations(navigation.to.url.pathname)
+      : Promise.resolve()
+
+    if (!document.startViewTransition) return routeTranslations
 
     return new Promise((resolve) => {
       document.startViewTransition(async () => {
+        await routeTranslations
         resolve()
         await navigation.complete
       })
     })
+  })
+
+  $effect(() => {
+    loadRouteTranslations($page.url.pathname)
   })
 
   $effect(() => {

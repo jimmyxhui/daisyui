@@ -322,7 +322,7 @@ export const main = (fs, sourceDirs, pattern, translationFilePath) => {
 // Usage
 const sourceDirs = ["./packages/docs/src/routes"]
 const mdFilePattern = /\.md$/
-const translationFilePath = "./packages/docs/src/translation/en.json"
+const translationFilePath = "./packages/docs/src/translation/en.other.json"
 
 const result = main(fs, sourceDirs, mdFilePattern, translationFilePath)
 console.log(`Processed ${result.processedFiles} of ${result.totalFiles} files`)

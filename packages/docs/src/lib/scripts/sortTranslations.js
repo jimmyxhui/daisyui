@@ -1,5 +1,5 @@
 import { readdirSync, readFileSync, writeFileSync, existsSync } from "fs"
-import { join } from "path"
+import { basename, join } from "path"
 
 // Reuse getFiles function from the previous script
 export function getFiles(dir, pattern) {
@@ -19,10 +19,10 @@ export function getFiles(dir, pattern) {
   return results.sort() // Sort files alphabetically
 }
 
-// Get the reference order from the primary language file (e.g. en.json)
+// Get the reference order from the matching English chunk file
 function getPrimaryLanguageOrder(primaryFile) {
   const primaryTranslations = JSON.parse(readFileSync(primaryFile, "utf-8"))
-  return Object.keys(primaryTranslations).filter((key) => !key.startsWith("__"))
+  return Object.keys(primaryTranslations)
 }
 
 // Sort and write translations to file
@@ -31,16 +31,7 @@ function sortTranslationsFile(filePath, primaryOrder) {
     const content = JSON.parse(readFileSync(filePath, "utf-8"))
     const sortedContent = {}
 
-    // First, add metadata keys (starting with __) in alphabetical order
-    const metadataKeys = Object.keys(content)
-      .filter((key) => key.startsWith("__"))
-      .sort()
-
-    metadataKeys.forEach((key) => {
-      sortedContent[key] = content[key]
-    })
-
-    // Then add translations in the same order as primary language
+    // Add translations in the same order as the matching English chunk.
     primaryOrder.forEach((key) => {
       if (content.hasOwnProperty(key)) {
         sortedContent[key] = content[key]
@@ -73,19 +64,18 @@ if (require.main === module) {
     process.exit(1)
   }
 
-  // Get primary language (en.json) order first
-  const primaryFile = join(translationDir, "en.json")
-  if (!existsSync(primaryFile)) {
-    console.error(`Primary language file (en.json) not found in ${translationDir}`)
-    process.exit(1)
-  }
-
   try {
-    const primaryOrder = getPrimaryLanguageOrder(primaryFile)
-
-    // Process each translation file using the primary order
+    // Process each translation chunk using the matching English chunk order.
     translationFiles.forEach((file) => {
       try {
+        const fileName = basename(file)
+        const chunk = fileName.replace(/^[^.]+\./, "").replace(".json", "")
+        const primaryFile = join(translationDir, `en.${chunk}.json`)
+        if (!existsSync(primaryFile)) {
+          console.error(`Primary language file (${basename(primaryFile)}) not found`)
+          process.exit(1)
+        }
+        const primaryOrder = getPrimaryLanguageOrder(primaryFile)
         sortTranslationsFile(file, primaryOrder)
       } catch (error) {
         console.error(`Error processing translation file ${file}:`, error)
@@ -93,7 +83,7 @@ if (require.main === module) {
       }
     })
   } catch (error) {
-    console.error(`Error reading primary language file:`, error)
+    console.error(`Error reading primary language files:`, error)
     process.exit(1)
   }
 }

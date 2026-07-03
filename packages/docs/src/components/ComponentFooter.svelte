@@ -389,7 +389,7 @@
               target="_blank"
               rel="noopener, noreferrer"
               class="link"
-              href={`https://github.com/saadeghi/daisyui/blob/master/packages/docs/src/translation/${$currentLang}.json`}
+              href="https://github.com/saadeghi/daisyui/tree/master/packages/docs/src/translation"
             >
               {$t("Contribute to translation")}
             </a>

@@ -177,9 +177,9 @@
 
 <div class="h-4"></div>
 
-<div class="lg:hidden">
+<div class="lg:hidden" data-sveltekit-preload-code="viewport">
   {#if hasMobileSidebarMenuItems && !showMobileMainMenu}
-    <ul class="menu w-full px-4 py-0" data-sveltekit-preload-data>
+    <ul class="menu w-full px-4 py-0">
       <li>
         <button
           onclick={() => {
@@ -230,7 +230,6 @@
                   </button>
                 {:else}
                   <a
-                    data-sveltekit-preload-data
                     href={child.href}
                     target={child.target === "blank" ? "_blank" : undefined}
                     rel={child.target === "blank" ? "noopener noreferrer" : undefined}
@@ -299,7 +298,6 @@
                           </button>
                         {:else}
                           <a
-                            data-sveltekit-preload-data
                             href={child.href}
                             target={child.target === "blank" ? "_blank" : undefined}
                             rel={child.target === "blank" ? "noopener noreferrer" : undefined}
@@ -350,7 +348,6 @@
                   </button>
                 {:else}
                   <a
-                    data-sveltekit-preload-data
                     href={item.href}
                     class={isActive(item) ? "menu-active" : ""}
                     onclick={() => {

@@ -1,5 +1,5 @@
 import { readdirSync, readFileSync, writeFileSync, existsSync } from "fs"
-import { join } from "path"
+import { basename, join } from "path"
 
 // Reuse getFiles function
 export function getFiles(dir, pattern) {
@@ -71,21 +71,19 @@ if (require.main === module) {
     process.exit(1)
   }
 
-  // Get primary language file (en.json)
-  const primaryFile = join(translationDir, "en.json")
-  if (!existsSync(primaryFile)) {
-    console.error(`Primary language file (en.json) not found in ${translationDir}`)
-    process.exit(1)
-  }
-
   try {
-    const primaryContent = getPrimaryLanguageContent(primaryFile)
-
-    // Process each translation file except the primary language file
+    // Process each translation chunk against the matching English chunk.
     translationFiles
-      .filter((file) => file !== primaryFile)
+      .filter((file) => !basename(file).startsWith("en."))
       .forEach((file) => {
         try {
+          const chunk = basename(file).replace(/^[^.]+\./, "").replace(".json", "")
+          const primaryFile = join(translationDir, `en.${chunk}.json`)
+          if (!existsSync(primaryFile)) {
+            console.error(`Primary language file (${basename(primaryFile)}) not found`)
+            process.exit(1)
+          }
+          const primaryContent = getPrimaryLanguageContent(primaryFile)
           syncTranslationsFile(file, primaryContent)
         } catch (error) {
           console.error(`Error processing translation file ${file}:`, error)
@@ -93,7 +91,7 @@ if (require.main === module) {
         }
       })
   } catch (error) {
-    console.error(`Error processing primary language file:`, error)
+    console.error(`Error processing primary language files:`, error)
     process.exit(1)
   }
 }

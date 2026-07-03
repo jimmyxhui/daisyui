@@ -2,36 +2,34 @@ import fs from "node:fs"
 import { diffString } from "json-diff"
 
 const translationDir = "src/translation"
+const chunks = ["common", "home", "docs", "components", "other"]
 
-// Read all files from translation directory and filter out en.json
 fs.readdir(translationDir, (err, files) => {
   if (err) {
     console.error(err)
     return
   }
 
-  const langs = files
-    .filter((file) => file.endsWith(".json") && file !== "en.json")
-    .map((file) => file.replace(".json", ""))
+  const langs = [
+    ...new Set(
+      files
+        .filter((file) => file.endsWith(".common.json"))
+        .map((file) => file.replace(".common.json", "")),
+    ),
+  ].filter((lang) => lang !== "en")
 
   for (const lang of langs) {
-    fs.readFile("src/translation/en.json", "utf8", (err1, file1) => {
-      if (err1) {
-        console.error(err1)
-        return
+    chunks.forEach((chunk) => {
+      const enFile = `${translationDir}/en.${chunk}.json`
+      const langFile = `${translationDir}/${lang}.${chunk}.json`
+      const diff = diffString(
+        JSON.parse(fs.readFileSync(enFile, "utf8")),
+        JSON.parse(fs.readFileSync(langFile, "utf8")),
+        { keysOnly: true },
+      )
+      if (diff) {
+        console.log(`EN.${chunk} 🆚 ${lang.toUpperCase()}.${chunk}\n${diff}`)
       }
-      fs.readFile(`src/translation/${lang}.json`, "utf8", (err2, file2) => {
-        if (err2) {
-          console.error(err2)
-          return
-        }
-        const diff = diffString(JSON.parse(file1), JSON.parse(file2), {
-          keysOnly: true,
-        })
-        if (diff) {
-          console.log(`EN 🆚 ${lang.toUpperCase()}\n${diff}`)
-        }
-      })
     })
   }
 })
