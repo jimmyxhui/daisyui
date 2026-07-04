@@ -1038,6 +1038,7 @@
       </div>
     </div>
     <div
+      dir="ltr"
       class="rounded-box sticky top-32 mt-28 flex w-80 shrink-0 flex-col gap-4 border-s border-white/10 bg-black/70 p-4 text-xs text-white/70 max-md:mx-auto sm:w-120"
     >
       <div class="flex justify-end gap-3 opacity-50">
@@ -1257,6 +1258,7 @@
       </div>
     </div>
     <div
+      dir="ltr"
       class="rounded-box sticky top-50 mt-40 -mb-4 flex w-80 shrink-0 flex-col gap-4 border-s border-white/10 bg-black p-4 text-xs text-white/70 max-lg:hidden sm:w-120"
     >
       <div class="flex justify-end gap-3 opacity-50">
@@ -1449,6 +1451,7 @@
       </div>
     </div>
     <div
+      dir="ltr"
       class="rounded-box sticky -mb-2 flex w-80 shrink-0 flex-col gap-4 border-s border-white/10 bg-black p-4 text-xs text-white/70 max-md:mx-auto sm:w-120 md:top-32 lg:-mt-55"
     >
       <div>
@@ -1909,6 +1912,7 @@
       </div>
     </div>
     <div
+      dir="ltr"
       class="rounded-box flex w-80 shrink-0 flex-col gap-4 border-s border-white/10 bg-black p-4 text-xs text-white/70 max-md:mx-auto sm:w-120"
     >
       <div>
@@ -2186,6 +2190,7 @@
       </div>
     </div>
     <div
+      dir="ltr"
       class="rounded-box flex w-80 shrink-0 flex-col gap-4 border-s border-white/10 bg-black p-4 text-xs text-white/70 max-md:mx-auto sm:w-120"
     >
       <div>
@@ -2438,6 +2443,7 @@
       </div>
     </div>
     <div
+      dir="ltr"
       class="rounded-box flex w-80 shrink-0 flex-col gap-4 border-s border-white/10 bg-black p-4 text-xs text-white/70 max-md:mx-auto sm:w-120"
     >
       <div class="rounded-box border border-white/5 bg-white/5 p-4">
@@ -2761,6 +2767,7 @@
       </div>
     </div>
     <div
+      dir="ltr"
       class="rounded-box flex w-80 shrink-0 flex-col gap-4 border-s border-white/10 bg-black p-4 text-xs text-white/70 max-md:mx-auto sm:w-120"
     >
       <div class="rounded-box border border-white/5 bg-white/5 p-4">
@@ -3058,6 +3065,7 @@
       </div>
     </div>
     <div
+      dir="ltr"
       class="rounded-box flex w-80 shrink-0 flex-col gap-4 border-s border-white/10 bg-black p-4 text-xs text-white/70 max-md:mx-auto sm:w-120"
     >
       <div class="rounded-box border border-white/5 bg-white/5 p-4">
@@ -3362,6 +3370,7 @@
       </div>
     </div>
     <div
+      dir="ltr"
       class="rounded-box flex w-80 shrink-0 flex-col gap-4 border-s border-white/10 bg-black p-4 text-xs text-white/70 max-md:mx-auto sm:w-120"
     >
       <div class="rounded-box border border-white/5 bg-white/5 p-4">
@@ -3657,6 +3666,7 @@
       </div>
     </div>
     <div
+      dir="ltr"
       class="rounded-box flex w-80 shrink-0 flex-col gap-4 border-s border-white/10 bg-black p-4 text-xs text-white/70 max-md:mx-auto sm:w-120"
     >
       <div class="rounded-box border border-white/5 bg-white/5 p-4">
@@ -3946,6 +3956,7 @@
       </div>
     </div>
     <div
+      dir="ltr"
       class="rounded-box flex w-80 shrink-0 flex-col gap-4 border-s border-white/10 bg-black p-4 text-xs text-white/70 max-md:mx-auto sm:w-120"
     >
       <div class="rounded-box border border-white/5 bg-white/5 p-4">
