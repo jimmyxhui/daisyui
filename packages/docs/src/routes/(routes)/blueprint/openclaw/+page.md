@@ -23,6 +23,6 @@ openclaw mcp set daisyui-blueprint \
   '{"command":"npx","args":["-y","daisyui-blueprint@latest"],"env":{"LICENSE":"YOUR_LICENSE_KEY","EMAIL":"YOUR_EMAIL","FIGMA":"YOUR_FIGMA_API_KEY"}}'
 ```
 
-After configuring the server, tell the AI model to **use Blueprint MCP**.
+After configuring the server, tell the AI model to use Blueprint MCP.
 
 <a href="/blueprint/figma/" class="btn btn-sm rounded-full not-prose">Next: Setup the Figma API</a>

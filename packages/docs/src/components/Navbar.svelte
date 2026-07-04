@@ -108,7 +108,7 @@
   ${switchNavbarStyle ? "shadow-xs" : ""}
   `}
 >
-  <nav class="navbar w-full py-0" data-sveltekit-preload-code="viewport">
+  <nav class="navbar w-full py-0">
     <div class="navbar-start">
       <span
         class="tooltip tooltip-bottom before:text-xs before:content-[attr(data-tip)]"

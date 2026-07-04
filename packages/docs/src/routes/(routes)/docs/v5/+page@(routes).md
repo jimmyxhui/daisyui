@@ -1,6 +1,7 @@
 ---
 title: daisyUI 5 release notes
 desc: Everything about the new daisyUI 5 release
+dir: ltr
 ---
 
 <script>

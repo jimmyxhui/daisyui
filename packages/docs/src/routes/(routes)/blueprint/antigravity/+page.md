@@ -36,6 +36,6 @@ Get a [Blueprint license key](/blueprint/checkout/).
 }
 ```
 
-After configuring the server, tell the AI model to **use Blueprint MCP**.
+After configuring the server, tell the AI model to use Blueprint MCP.
 
 <a href="/blueprint/figma/" class="btn btn-sm rounded-full not-prose">Next: Setup the Figma API</a>

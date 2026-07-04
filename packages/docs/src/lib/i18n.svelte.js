@@ -75,6 +75,7 @@ const loadedTranslations = writable({
 const loadedChunks = {
   [defaultLang]: new Set(["common", "home"]),
 }
+const loadingAllChunks = {}
 
 // Function to check if a language is valid
 const isValidLanguage = (lang) => langs.includes(lang)
@@ -151,6 +152,20 @@ async function loadTranslationChunks(lang, chunks) {
   return get(loadedTranslations)[lang]
 }
 
+const hasLoadedAllChunks = (lang) =>
+  hasChunkedTranslation(lang) && chunkNames.every((chunk) => loadedChunks[lang]?.has(chunk))
+
+const loadAllTranslationChunks = (lang) => {
+  if (!hasChunkedTranslation(lang)) return loadTranslation(lang)
+  if (hasLoadedAllChunks(lang)) return Promise.resolve(get(loadedTranslations)[lang])
+
+  loadingAllChunks[lang] ??= loadTranslationChunks(lang, chunkNames).finally(() => {
+    delete loadingAllChunks[lang]
+  })
+
+  return loadingAllChunks[lang]
+}
+
 export const loadRouteTranslations = async (pathname = "/") => {
   currentRouteChunk = getRouteChunk(pathname)
   return loadTranslationChunks(get(currentLang), ["common", currentRouteChunk])
@@ -213,6 +228,15 @@ const getTranslationText = (translations, lang, key) => {
 // Function to handle missing translation keys
 const handleMissingTranslation = (translations, currentLang, key, returnFallback) => {
   if (translations[currentLang]?.[key] === undefined) {
+    if (hasChunkedTranslation(currentLang) && !hasLoadedAllChunks(currentLang)) {
+      loadAllTranslationChunks(currentLang)
+      if (currentLang !== defaultLang && !hasLoadedAllChunks(defaultLang)) {
+        loadAllTranslationChunks(defaultLang)
+      }
+      const defaultText = translations[defaultLang]?.[key]
+      return defaultText === undefined ? key : convertBackticksToCode(defaultText)
+    }
+
     if (translations[defaultLang]?.[key] === undefined) {
       return key
     }

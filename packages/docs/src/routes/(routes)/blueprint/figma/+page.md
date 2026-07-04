@@ -24,7 +24,7 @@ layout: docs
 
 ### Step 1: Get a Figma Access Token
 
-In Figma, go to <span class="badge badge-sm font-mono">Settings &gt; Security &gt; Personal Access Tokens &gt; Generate new token</span>.
+<Translate text="In Figma, go to Settings > Security > Personal Access Tokens > Generate new token." />
 
 Required permissions:
 
@@ -37,7 +37,7 @@ Required permissions:
 
 ### Step 2: Add the token to Blueprint MCP
 
-Set the Figma API token in the <span class="badge badge-sm font-mono">FIGMA</span> environment variable for the Blueprint MCP server.
+<Translate text="Set the Figma API token in the FIGMA environment variable for the Blueprint MCP server." />
 
 ```json
 "daisyui-blueprint": {
@@ -53,7 +53,7 @@ Set the Figma API token in the <span class="badge badge-sm font-mono">FIGMA</spa
 
 ### Step 3: Copy a Figma selection link
 
-In Figma, right click on a section and choose <span class="badge badge-sm font-mono">Copy/Paste as &gt; Copy link to selection</span>.
+<Translate text="In Figma, right click on a section and choose Copy/Paste as > Copy link to selection." />
 
 ### Step 4: Ask your editor to generate daisyUI code
 

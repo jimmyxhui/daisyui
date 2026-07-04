@@ -659,11 +659,12 @@
                 <div style="height: 90%"></div>
               </div>
               <p class="py-3 text-xs">
-                {$t("Sales volume reached $12,450 this week, showing a 15% increase from the previous period.")}
+                Sales volume reached $12,450 this week, showing a 15% increase from the previous
+                period.
               </p>
               <div class="grid grid-cols-2 gap-2">
-                <button class="btn">{$t("Charts")}</button>
-                <button class="btn btn-neutral">{$t("Details")}</button>
+                <button class="btn">Charts</button>
+                <button class="btn btn-neutral">Details</button>
               </div>
             </div>
           </div>
