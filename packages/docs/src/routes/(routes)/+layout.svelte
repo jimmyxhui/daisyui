@@ -159,8 +159,15 @@
 <div
   class={`bg-base-100 drawer mx-auto max-w-[100rem] ${hasDesktopSidebar ? "lg:drawer-open" : ""}`}
 >
-  <input id="drawer" type="checkbox" autocomplete="off" class="drawer-toggle" bind:checked />
-  <div class={`drawer-content`} inert={shouldBeInert || undefined}>
+  <input
+    id="drawer"
+    type="checkbox"
+    autocomplete="off"
+    class="drawer-toggle"
+    aria-label="Toggle drawer"
+    bind:checked
+  />
+  <main class={`drawer-content`} inert={shouldBeInert || undefined}>
     <div class={`${hasDesktopSidebar ? "relative max-w-[100vw] px-6 pb-16 xl:pe-2" : ""}`}>
       {@render children?.()}
     </div>
@@ -178,7 +185,7 @@
         </span>
       </div>
     </div>
-  </div>
+  </main>
   <div
     class={`drawer-side z-40 ${
       hasDesktopSidebar
